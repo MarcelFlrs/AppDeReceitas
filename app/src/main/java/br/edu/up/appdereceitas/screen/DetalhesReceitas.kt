@@ -34,9 +34,9 @@ fun DetalhesReceitas(receita: Receita, navController: NavController, onRemover: 
         }
     ) { innerPadding ->
         Column(modifier = Modifier.padding(innerPadding).padding(16.dp)) {
-            Text(text = receita.name, style = MaterialTheme.typography.titleLarge)
-            Text(text = "Ingredientes: ${receita.ingredients}")
-            Text(text = "Instruções: ${receita.instructions}")
+            Text(text = receita.nome, style = MaterialTheme.typography.titleLarge)
+            Text(text = "Ingredientes: ${receita.ingredientes}")
+            Text(text = "Instruções: ${receita.instrucoes}")
             Button(onClick = {
                 onRemover(receita)
                 navController.popBackStack() // Volta para a tela anterior

@@ -1,3 +1,3 @@
 package br.edu.up.appdereceitas.model
 
-data class Receita(val name: String, val ingredients: String, val instructions: String)
+data class Receita(val nome: String, val ingredientes: String, val instrucoes: String)

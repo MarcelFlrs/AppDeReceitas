@@ -50,7 +50,7 @@ fun AdicionarReceitas(navController: NavController, onAdicionar: (Receita) -> Un
             TextField(value = instrucoes, onValueChange = { instrucoes = it }, label = { Text("Instruções") })
             Button(onClick = {
                 onAdicionar(Receita(nome, ingredientes, instrucoes))
-                navController.popBackStack() // Volta para a tela inicial
+                navController.popBackStack()
             }) {
                 Text("Adicionar Receita")
             }
