@@ -15,16 +15,10 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
-//import br.edu.up.appdereceitas.ui.model.CategoriaViewModel
-import br.edu.up.appdereceitas.ui.model.Receita
 import br.edu.up.appdereceitas.ui.util.AppTopBar
 
 @Composable
-fun AdicionarReceitas(
-    navController: NavController,
-    onAdicionarReceita: (Receita) -> Unit,
-    //categoriaViewModel: CategoriaViewModel
-) {
+fun AdicionarReceitas() {
     var titulo by remember { mutableStateOf("") }
     var descricao by remember { mutableStateOf("") }
     var categoriaSelecionada by remember { mutableStateOf("") }
@@ -39,8 +33,7 @@ fun AdicionarReceitas(
     Scaffold(
         topBar = {
             AppTopBar(
-                title = { Text("Adicionar Receita") },
-                navController = navController
+                title = { Text("Adicionar Receita") }
             )
         }
     ) { innerPadding ->
@@ -51,7 +44,7 @@ fun AdicionarReceitas(
         ) {
             TextField(
                 value = titulo,
-                onValueChange = { titulo = it },
+                onValueChange = {},
                 label = { Text("Título") },
                 modifier = Modifier.fillMaxWidth()
             )
@@ -59,7 +52,7 @@ fun AdicionarReceitas(
 
             TextField(
                 value = descricao,
-                onValueChange = { descricao = it },
+                onValueChange = {},
                 label = { Text("Descrição") },
                 modifier = Modifier.fillMaxWidth()
             )
@@ -67,7 +60,7 @@ fun AdicionarReceitas(
 
             TextField(
                 value = ingredientes,
-                onValueChange = { ingredientes = it },
+                onValueChange = {},
                 label = { Text("Ingredientes") },
                 modifier = Modifier.fillMaxWidth(),
                 placeholder = { Text("Ex: Arroz, Feijão") }
@@ -76,7 +69,7 @@ fun AdicionarReceitas(
 
             TextField(
                 value = tempoPreparo,
-                onValueChange = { tempoPreparo = it },
+                onValueChange = {},
                 label = { Text("Tempo de Preparo") },
                 modifier = Modifier.fillMaxWidth(),
                 placeholder = { Text("Ex: 10 minutos") }
@@ -85,7 +78,7 @@ fun AdicionarReceitas(
 
             TextField(
                 value = categoriaSelecionada,
-                onValueChange = { categoriaSelecionada = it },
+                onValueChange = {},
                 label = { Text("Categoria") },
                 modifier = Modifier.fillMaxWidth(),
                 placeholder = { Text("Ex: Sobremesa") }
@@ -94,7 +87,7 @@ fun AdicionarReceitas(
 
             TextField(
                 value = tempoCozimento,
-                onValueChange = { tempoCozimento = it },
+                onValueChange = {},
                 label = { Text("Tempo de Cozimento") },
                 modifier = Modifier.fillMaxWidth(),
                 placeholder = { Text("Ex: 20 minutos") }
@@ -103,7 +96,7 @@ fun AdicionarReceitas(
 
             TextField(
                 value = tempoDescanso,
-                onValueChange = { tempoDescanso = it },
+                onValueChange = {},
                 label = { Text("Tempo de Descanso") },
                 modifier = Modifier.fillMaxWidth(),
                 placeholder = { Text("Ex: 15 minutos") }
@@ -112,7 +105,7 @@ fun AdicionarReceitas(
 
             TextField(
                 value = tempoTotal,
-                onValueChange = { tempoTotal = it },
+                onValueChange = {},
                 label = { Text("Tempo Total") },
                 modifier = Modifier.fillMaxWidth(),
                 placeholder = { Text("Ex: 45 minutos") }
@@ -120,26 +113,7 @@ fun AdicionarReceitas(
             Spacer(modifier = Modifier.height(8.dp))
 
             ElevatedButton(
-                onClick = {
-                    if (titulo.isNotEmpty() && descricao.isNotEmpty() && categoriaSelecionada.isNotEmpty()) {
-                        val novaReceita = Receita(
-                            nome = titulo,
-                            descricao = descricao,
-                            ingredientes = ingredientes,
-                            tempoPreparo = tempoPreparo,
-                            tempoCozimento = tempoCozimento,
-                            tempoDescanso = tempoDescanso,
-                            tempoTotal = tempoTotal,
-                            categoria = categoriaSelecionada
-                        )
-                        onAdicionarReceita(novaReceita)
-
-//                        if (!categorias.any { it.nome == categoriaSelecionada }) {
-//                            categoriaViewModel.adicionarCategoria(categoriaSelecionada)
-//                        }
-                        navController.popBackStack()
-                    }
-                },
+                onClick = {},
                 modifier = Modifier.padding(vertical = 16.dp)
             ) {
                 Text("Salvar Receita")

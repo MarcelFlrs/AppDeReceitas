@@ -12,21 +12,16 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
-import br.edu.up.appdereceitas.ui.model.Receita
 import br.edu.up.appdereceitas.ui.util.AppTopBar
-import br.edu.up.appdereceitas.ui.viewmodel.ReceitaViewModel
 
 @Composable
 fun DetalhesReceita(
     navController: NavController,
-    receita: Receita,
-    receitaViewModel: ReceitaViewModel
 ) {
     Scaffold(
         topBar = {
             AppTopBar(
-                title = { Text("Detalhes da Receita") },
-                navController = navController
+                title = { Text("Detalhes da Receita") }
             )
         }
     ) { innerPadding ->
@@ -36,43 +31,43 @@ fun DetalhesReceita(
                 .padding(16.dp)
         ) {
             Text(
-                text = receita.nome,
+                text = "receita.nome",
                 style = MaterialTheme.typography.titleLarge,
                 modifier = Modifier.padding(bottom = 8.dp)
             )
 
             Text(
-                text = "Descrição: ${receita.descricao}",
+                text = "Descrição: Descrição 1",
                 style = MaterialTheme.typography.bodyMedium,
                 modifier = Modifier.padding(bottom = 8.dp)
             )
 
             Text(
-                text = "Ingredientes: ${receita.ingredientes}",
+                text = "Ingredientes: Ingrediente 1",
                 style = MaterialTheme.typography.bodyMedium,
                 modifier = Modifier.padding(bottom = 8.dp)
             )
 
             Text(
-                text = "Tempo de Preparo: ${receita.tempoPreparo}",
+                text = "Tempo de Preparo: 10 min",
                 style = MaterialTheme.typography.bodyMedium,
                 modifier = Modifier.padding(bottom = 8.dp)
             )
 
             Text(
-                text = "Tempo de Cozimento: ${receita.tempoCozimento}",
+                text = "Tempo de Cozimento: 15 min",
                 style = MaterialTheme.typography.bodyMedium,
                 modifier = Modifier.padding(bottom = 8.dp)
             )
 
             Text(
-                text = "Tempo de Descanso: ${receita.tempoDescanso}",
+                text = "Tempo de Descanso: 17 min",
                 style = MaterialTheme.typography.bodyMedium,
                 modifier = Modifier.padding(bottom = 8.dp)
             )
 
             Text(
-                text = "Tempo Total: ${receita.tempoTotal}",
+                text = "Tempo Total: 42 min",
                 style = MaterialTheme.typography.bodyMedium,
                 modifier = Modifier.padding(bottom = 8.dp)
             )
@@ -82,7 +77,6 @@ fun DetalhesReceita(
 
             ElevatedButton(
                 onClick = {
-                    receitaViewModel.removerReceita(receita)
                     navController.popBackStack()
                 },
                 modifier = Modifier.padding(vertical = 16.dp)

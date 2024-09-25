@@ -4,9 +4,9 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
+import androidx.compose.material3.Button
 import androidx.compose.material3.DrawerValue
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.HorizontalDivider
@@ -23,25 +23,18 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import androidx.navigation.NavController
-import br.edu.up.appdereceitas.ui.model.Receita
+import androidx.navigation.compose.rememberNavController
 import br.edu.up.appdereceitas.ui.util.AppTopBar
 import br.edu.up.appdereceitas.ui.util.DrawerContent
-import kotlinx.coroutines.launch
 
 @Composable
-fun ListaReceitas(
-    receitas: List<Receita>,
-    onReceitaClick: (Receita) -> Unit,
-    onCriarReceita: () -> Unit,
-    navController: NavController
-) {
+fun ListaReceitas() {
     val drawerState = rememberDrawerState(DrawerValue.Closed)
-    val scope = rememberCoroutineScope()
+    val navController = rememberNavController()
 
 
     ModalNavigationDrawer(
-        drawerContent = { DrawerContent(navController) },
+        drawerContent = {},
         drawerState = drawerState
     ) {
         Scaffold(
@@ -56,44 +49,28 @@ fun ListaReceitas(
                             ),
                             modifier = Modifier.fillMaxWidth()
                         )
-                    },
-                    navController = navController,
-                    onDrawerClick = {
-                        scope.launch { drawerState.open() }
                     }
+
                 )
             },
             floatingActionButton = {
                 FloatingActionButton(
                     containerColor = Color(0xFFec7e30),
-                    onClick = onCriarReceita
+                    onClick = { }
                 ) {
                     Icon(Icons.Default.Add, contentDescription = "Adicionar Receita")
                 }
             }
         ) { innerPadding ->
             LazyColumn(modifier = Modifier.padding(innerPadding)) {
-                if (receitas.isEmpty()) {
-                    item {
-                        Text(
-                            text = "Seja Bem vindo ao TasteBook, adicione uma receita para começar!.",
-                            style = MaterialTheme.typography.titleMedium.copy(color = Color.Gray),
-                            modifier = Modifier
-                                .padding(16.dp)
-                                .fillMaxWidth(),
-                            textAlign = TextAlign.Center
-                        )
+                item {
+                    Button(
+                        onClick = { navController.navigate("_receitas") },
+                        modifier = Modifier.padding(16.dp)
+                    ) {
+                        Text(text = "Receita 1")
                     }
-                } else {
-                    items(receitas) { receita ->
-                        Text(
-                            text = receita.nome,
-                            modifier = Modifier
-                                .padding(16.dp)
-                                .clickable { onReceitaClick(receita) }
-                        )
-                        HorizontalDivider()
-                    }
+                    HorizontalDivider()
                 }
             }
         }

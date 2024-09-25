@@ -11,13 +11,11 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
-import androidx.navigation.NavController
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun AppTopBar(
     title: @Composable () -> Unit,
-    navController: NavController,
     onDrawerClick: (() -> Unit)? = null,
     mostrarBotaoVoltar: Boolean = false
 ) {
@@ -25,11 +23,7 @@ fun AppTopBar(
         title = title,
         navigationIcon = {
             Row {
-                if (mostrarBotaoVoltar) {
-                    IconButton(onClick = { navController.popBackStack() }) {
-                        Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Voltar")
-                    }
-                }
+
                 if (onDrawerClick != null) {
                     IconButton(onClick = { onDrawerClick() }) {
                         Icon(Icons.Filled.Menu, contentDescription = "Abrir Menu")
