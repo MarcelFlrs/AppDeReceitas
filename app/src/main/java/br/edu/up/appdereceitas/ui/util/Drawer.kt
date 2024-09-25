@@ -10,35 +10,48 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.*
+import androidx.compose.ui.graphics.Color
+
 
 @Composable
 fun DrawerContent(navController: NavController) {
-    Column(modifier = Modifier.padding(16.dp)) {
-        Text(
-            text = "Menu",
-            style = MaterialTheme.typography.titleLarge,
-            modifier = Modifier.padding(bottom = 16.dp)
-        )
+    val drawerWidth = 0.5f
+    Box(
+        modifier = Modifier
+            .fillMaxHeight()
+            .fillMaxWidth(drawerWidth)
+            .background(Color.White)
+            .padding(16.dp)
+    ) {
+        Column {
+            Text(
+                text = "Menu",
+                style = MaterialTheme.typography.titleLarge,
+                modifier = Modifier.padding(bottom = 16.dp)
+            )
 
-        Text(
-            text = "Receitas",
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(8.dp)
-                .clickable {
-                    navController.navigate("_receitas")
-                }
-        )
+            Text(
+                text = "Receitas",
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(8.dp)
+                    .clickable {
+                        navController.navigate("_receitas")
+                    }
+            )
 
-        Text(
-            text = "Categorias",
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(8.dp)
-                .clickable {
-                    navController.navigate("_categorias")
-                }
-        )
+            Text(
+                text = "Categorias",
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(8.dp)
+                    .clickable {
+                        navController.navigate("_categorias")
+                    }
+            )
+        }
     }
 }
 

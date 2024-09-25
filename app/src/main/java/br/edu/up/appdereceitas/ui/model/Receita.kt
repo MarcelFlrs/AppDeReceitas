@@ -8,6 +8,6 @@ data class Receita(
     val tempoPreparo: String,
     val tempoCozimento: String,
     val tempoDescanso: String,
-    val tempoTotal: String
+    val tempoTotal: String,
     val categoria: String
 )

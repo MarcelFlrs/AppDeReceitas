@@ -3,6 +3,7 @@ package br.edu.up.appdereceitas
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -14,6 +15,7 @@ import br.edu.up.appdereceitas.ui.screen.DetalhesReceita
 import br.edu.up.appdereceitas.ui.screen.TelaCategorias
 import br.edu.up.appdereceitas.ui.theme.AppDeReceitasTheme
 import br.edu.up.appdereceitas.ui.viewmodel.ReceitaViewModel
+
 
 @Preview(
     device = Devices.PIXEL
@@ -27,7 +29,11 @@ fun RecipeApp() {
         NavHost(navController = navController, startDestination = "_receitas") {
 
 
-            composable("categorias") { TelaCategorias(navController) }
+            composable("_categorias") { backStackEntry ->
+                val viewModel = ViewModelProvider(backStackEntry)[CategoriaViewModel::class.java]
+                TelaCategorias(navController, viewModel)
+            }
+
 
             composable("_receitas") {
                 ListaReceitas(
@@ -45,7 +51,6 @@ fun RecipeApp() {
                     DetalhesReceita(navController = navController, receita = receita, receitaViewModel)
                 }
             }
-            composable("_categorias") { TelaCategorias(navController) }
 
 
             composable("adicionar") {
