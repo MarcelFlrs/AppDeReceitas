@@ -22,9 +22,11 @@ fun RecipeApp() {
 
     NavHost(navController = navController, startDestination = "home") {
         composable("home") {
-            ListaReceitas(receitas = receitaViewModel.receitas,
+            ListaReceitas(
+                receitas = receitaViewModel.receitas,
                 onReceitaClick = { receita -> navController.navigate("detalhes/${receita.nome}") },
-                onCriarReceita = { navController.navigate("adicionar") }
+                onCriarReceita = { navController.navigate("adicionar") },
+                navController = navController
             )
         }
 
@@ -37,6 +39,7 @@ fun RecipeApp() {
                 }
             }
         }
+
         composable("adicionar") {
             AdicionarReceitas(navController) { novaReceita ->
                 receitaViewModel.adicionarReceita(novaReceita)
