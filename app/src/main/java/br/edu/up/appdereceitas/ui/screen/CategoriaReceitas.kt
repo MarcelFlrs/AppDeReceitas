@@ -10,15 +10,15 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
-import br.edu.up.appdereceitas.ui.model.CategoriaViewModel
+//import br.edu.up.appdereceitas.ui.model.CategoriaViewModel
 import br.edu.up.appdereceitas.ui.util.AppTopBar
 
 @Composable
 fun TelaCategorias(
     navController: NavController,
-    categoriaViewModel: CategoriaViewModel
+    // categoriaViewModel: CategoriaViewModel
 ) {
-    val categorias by categoriaViewModel.categorias.collectAsState()
+    //val categorias by categoriaViewModel.categorias.collectAsState()
 
     Scaffold(
         topBar = {
@@ -34,13 +34,13 @@ fun TelaCategorias(
                 .padding(16.dp)
         ) {
 
-            if (categorias.isEmpty()) {
+//            if (categorias.isEmpty()) {
                 Text("Nenhuma categoria adicionada.")
-            } else {
-                categorias.forEach { categoria ->
-                    Text(text = categoria.nome, modifier = Modifier.padding(vertical = 4.dp))
-                }
-            }
+//            } else {
+//                categorias.forEach { categoria ->
+//                    Text(text = categoria.nome, modifier = Modifier.padding(vertical = 4.dp))
+//                }
+//            }
         }
     }
 }

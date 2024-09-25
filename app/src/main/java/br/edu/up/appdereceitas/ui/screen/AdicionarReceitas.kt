@@ -15,7 +15,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
-import br.edu.up.appdereceitas.ui.model.CategoriaViewModel
+//import br.edu.up.appdereceitas.ui.model.CategoriaViewModel
 import br.edu.up.appdereceitas.ui.model.Receita
 import br.edu.up.appdereceitas.ui.util.AppTopBar
 
@@ -23,7 +23,7 @@ import br.edu.up.appdereceitas.ui.util.AppTopBar
 fun AdicionarReceitas(
     navController: NavController,
     onAdicionarReceita: (Receita) -> Unit,
-    categoriaViewModel: CategoriaViewModel
+    //categoriaViewModel: CategoriaViewModel
 ) {
     var titulo by remember { mutableStateOf("") }
     var descricao by remember { mutableStateOf("") }
@@ -34,7 +34,7 @@ fun AdicionarReceitas(
     var tempoTotal by remember { mutableStateOf("") }
     var ingredientes by remember { mutableStateOf("") }
 
-    val categorias by categoriaViewModel.categorias.collectAsState()
+    //val categorias by categoriaViewModel.categorias.collectAsState()
 
     Scaffold(
         topBar = {
@@ -134,9 +134,9 @@ fun AdicionarReceitas(
                         )
                         onAdicionarReceita(novaReceita)
 
-                        if (!categorias.any { it.nome == categoriaSelecionada }) {
-                            categoriaViewModel.adicionarCategoria(categoriaSelecionada)
-                        }
+//                        if (!categorias.any { it.nome == categoriaSelecionada }) {
+//                            categoriaViewModel.adicionarCategoria(categoriaSelecionada)
+//                        }
                         navController.popBackStack()
                     }
                 },

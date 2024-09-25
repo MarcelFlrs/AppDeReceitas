@@ -8,8 +8,6 @@ import br.edu.up.appdereceitas.ui.model.Categoria
 import br.edu.up.appdereceitas.ui.model.Receita
 
 class ReceitaViewModel : ViewModel() {
-    private val _categorias = mutableStateListOf<Categoria>()
-    val categorias: List<Categoria> get() = _categorias.toList()
 
     private val _receitas = mutableStateListOf<Receita>()
     val receitas: List<Receita> get() = _receitas.toList()

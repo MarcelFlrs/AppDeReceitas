@@ -9,7 +9,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import br.edu.up.appdereceitas.screen.ListaReceitas
-import br.edu.up.appdereceitas.ui.model.CategoriaViewModel
+// import br.edu.up.appdereceitas.ui.model.CategoriaViewModel
 import br.edu.up.appdereceitas.ui.screen.AdicionarReceitas
 import br.edu.up.appdereceitas.ui.screen.DetalhesReceita
 import br.edu.up.appdereceitas.ui.screen.TelaCategorias
@@ -30,8 +30,8 @@ fun RecipeApp() {
 
 
             composable("_categorias") { backStackEntry ->
-                val viewModel = ViewModelProvider(backStackEntry)[CategoriaViewModel::class.java]
-                TelaCategorias(navController, viewModel)
+                val viewModel = ViewModelProvider(backStackEntry)/*[//CategoriaViewModel::class.java]*/
+                TelaCategorias(navController, /*viewModel*/)
             }
 
 
@@ -56,9 +56,8 @@ fun RecipeApp() {
             composable("adicionar") {
                 AdicionarReceitas(navController, onAdicionarReceita = { novaReceita ->
                     receitaViewModel.adicionarReceita(novaReceita)
-                }, categoriaViewModel = CategoriaViewModel())
+                }) /*categoriaViewModel = CategoriaViewModel())*/
             }
-
         }
     }
 }
