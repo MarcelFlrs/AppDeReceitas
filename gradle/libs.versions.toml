@@ -10,8 +10,11 @@ activityCompose = "1.9.2"
 composeBom = "2024.04.01"
 navigationRuntimeKtx = "2.8.1"
 navigationCompose = "2.8.1"
+compose = "1.5.0"
 
 [libraries]
+
+androidx-compose-ui-text = { group = "androidx.compose.ui", name = "ui-text", version.ref = "compose" }
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
