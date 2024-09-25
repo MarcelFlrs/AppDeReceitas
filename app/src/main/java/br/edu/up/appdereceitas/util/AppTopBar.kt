@@ -3,6 +3,8 @@ package br.edu.up.appdereceitas.util
 import androidx.compose.foundation.background
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -24,10 +26,10 @@ fun AppTopBar(
     TopAppBar(
         title = { Text(title) },
         navigationIcon = when {
-            showBackButton -> {
+            mostrarBotaoVoltar -> {
                 {
                     IconButton(onClick = { navController.popBackStack() }) {
-                        Icon(Icons.Filled.ArrowBack, contentDescription = "Voltar")
+                        Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Voltar")
                     }
                 }
             }
@@ -38,9 +40,8 @@ fun AppTopBar(
                     }
                 }
             }
-            else -> null // Sem ícone
-        },
+            else -> null
+        } ?: {},
         modifier = Modifier.background(Color(0xFFFF6B1C))
     )
 }
-
