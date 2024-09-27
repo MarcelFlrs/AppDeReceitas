@@ -17,7 +17,9 @@ import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -48,21 +50,25 @@ fun AdicionarReceitas(navController: NavController) {
 
             Box(
                 modifier = Modifier
+                    .shadow(8.dp)
+                    .graphicsLayer {
+                        shadowElevation = 8.dp.toPx()
+                    }
                     .fillMaxWidth()
-                    .background(Color(0xFF457304))
-                    .padding(vertical = 5.dp),
+                    .background(Color.White)
+                    .padding(vertical = 10.dp),
                 contentAlignment = Alignment.Center
-            ){
+            ) {
                 Text(
-                    text = "Adicionar receita",
+                    text = "Adicionar Receita",
                     fontSize = 18.sp,
-                    color = Color.White
-                    )
-                }
+                    color = Color.Gray,
+                    fontWeight = FontWeight.Bold
+                )
+            }
 
             Column(
                 modifier = Modifier
-                    .padding(innerPadding)
                     .padding(16.dp)
             ) {
                 TextField(

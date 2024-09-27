@@ -44,6 +44,7 @@ import br.edu.up.appdereceitas.ui.util.AppBottomBar
 
 @Composable
 fun ListaReceitas(navController: NavController) {
+
     Scaffold(
         topBar = {
             AppTopBar(
@@ -62,7 +63,8 @@ fun ListaReceitas(navController: NavController) {
 
         floatingActionButton = {
             FloatingActionButton(
-                containerColor = Color(0xFFec7e30),
+                containerColor = Color(0xFF75A902),
+                contentColor = Color.White,
                 onClick = {
                     navController.navigate("_adicionarReceita")
                 }) {
@@ -83,15 +85,15 @@ fun ListaReceitas(navController: NavController) {
                         shadowElevation = 8.dp.toPx()
                     }
                     .fillMaxWidth()
-                    .background(Color(0xFFec7e30))
+                    .background(Color.White)
                     .padding(vertical = 10.dp),
                 contentAlignment = Alignment.Center
             ) {
                 Text(
                     text = "Receitas",
                     fontSize = 18.sp,
-                    color = Color.White,
-                    fontWeight = FontWeight.Medium
+                    color = Color.Gray,
+                    fontWeight = FontWeight.Bold
                 )
             }
 

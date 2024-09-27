@@ -42,12 +42,12 @@ fun AppBottomBar(navController: NavController) {
             BottomBarBotao(
                 icon = Icons.Default.Home,
                 label = "Receitas",
-                onClick = { navController.navigate("_home") }
+                onClick = { navController.navigate("_receitas") }
             )
             BottomBarBotao(
                 icon = Icons.Default.Favorite,
                 label = "Favoritos",
-                onClick = { navController.navigate("_favoritos") }
+                onClick = { navController.navigate("_receitasfavoritas") }
             )
 
             BottomBarBotao(

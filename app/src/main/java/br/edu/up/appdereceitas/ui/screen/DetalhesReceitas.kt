@@ -47,19 +47,20 @@ fun DetalhesReceita(navController: NavController) {
         Column(modifier = Modifier.padding(innerPadding)) {
             Box(
                 modifier = Modifier
-                    .fillMaxWidth()
                     .shadow(8.dp)
                     .graphicsLayer {
                         shadowElevation = 8.dp.toPx()
                     }
-                    .background(Color(0xFFec7e30))
+                    .fillMaxWidth()
+                    .background(Color.White)
                     .padding(vertical = 10.dp),
                 contentAlignment = Alignment.Center
             ) {
                 Text(
                     text = "Receitas",
                     fontSize = 18.sp,
-                    color = Color.White
+                    color = Color(0xFF75A902),
+                    fontWeight = FontWeight.Bold
                 )
             }
 
