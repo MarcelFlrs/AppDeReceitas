@@ -6,7 +6,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import br.edu.up.appdereceitas.screen.CategoriaReceitas
+import br.edu.up.appdereceitas.ui.screen.CategoriaReceitas
 import br.edu.up.appdereceitas.screen.ListaReceitas
 import br.edu.up.appdereceitas.ui.screen.AdicionarReceitas
 import br.edu.up.appdereceitas.ui.screen.DetalhesReceita

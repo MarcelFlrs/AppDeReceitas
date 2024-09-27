@@ -1,4 +1,4 @@
-package br.edu.up.appdereceitas.screen
+package br.edu.up.appdereceitas.ui.screen
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -11,9 +11,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
-import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.outlined.Create
-import androidx.compose.material.icons.outlined.FavoriteBorder
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ElevatedButton
 import androidx.compose.material3.FloatingActionButton
@@ -23,10 +21,6 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
@@ -87,7 +81,7 @@ fun CategoriaReceitas(navController: NavController) {
                 Text(
                     text = "Categorias",
                     fontSize = 18.sp,
-                    color = Color.Gray,
+                    color = Color(0xFF75A902),
                     fontWeight = FontWeight.Bold
                 )
             }
@@ -100,7 +94,7 @@ fun CategoriaReceitas(navController: NavController) {
                             .fillMaxWidth(),
                     ) {
                         ElevatedButton(
-                            onClick = { navController.navigate("_detalhes") },
+                            onClick = {},
                             colors = ButtonDefaults.elevatedButtonColors(
                                 containerColor = Color(0xFFf1f1f1),
                                 contentColor = Color.White
@@ -144,7 +138,7 @@ fun CategoriaReceitas(navController: NavController) {
                             .fillMaxWidth(),
                     ) {
                         ElevatedButton(
-                            onClick = { navController.navigate("_detalhes") },
+                            onClick = {},
                             colors = ButtonDefaults.elevatedButtonColors(
                                 containerColor = Color(0xFFf1f1f1),
                                 contentColor = Color.White

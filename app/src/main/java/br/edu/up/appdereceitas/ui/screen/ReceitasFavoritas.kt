@@ -32,7 +32,7 @@ fun ReceitasFavoritas(navController: NavController) {
             AppTopBar(
                 title = {
                     Text(
-                        text = "Receitas Favoritas",
+                        text = "TasteBook",
                         style = MaterialTheme.typography.titleLarge.copy(
                             fontWeight = FontWeight.Bold,
                         ),
@@ -60,7 +60,7 @@ fun ReceitasFavoritas(navController: NavController) {
                 contentAlignment = Alignment.Center
             ) {
                 Text(
-                    text = "Receitas",
+                    text = "Receitas Favoritas",
                     fontSize = 18.sp,
                     color = Color(0xFF75A902),
                     fontWeight = FontWeight.Bold
@@ -68,8 +68,9 @@ fun ReceitasFavoritas(navController: NavController) {
             }
 
             LazyColumn(modifier = Modifier.fillMaxWidth()) {
-                items(10) { index -> // Exemplo: 10 receitas favoritas
-                    var favoritado by remember { mutableStateOf(true) } // Simulando que todas são favoritas
+                item {
+
+                    var favoritado by remember { mutableStateOf(true) }
 
                     Box(
                         modifier = Modifier.fillMaxWidth(),
@@ -77,7 +78,7 @@ fun ReceitasFavoritas(navController: NavController) {
                         ElevatedButton(
                             onClick = { navController.navigate("_detalhes") },
                             colors = ButtonDefaults.elevatedButtonColors(
-                                containerColor = Color(0xFFf1f1f1)
+                                containerColor = Color.White
                             ),
                             modifier = Modifier
                                 .fillMaxWidth()
@@ -91,7 +92,7 @@ fun ReceitasFavoritas(navController: NavController) {
                             ) {
                                 Text(
                                     modifier = Modifier.padding(20.dp),
-                                    text = "Bolo de chocolate $index", // Exemplo de título
+                                    text = "Bolo de chocolate",
                                     fontSize = 17.sp,
                                     color = Color.Black,
                                     fontWeight = FontWeight.W500
@@ -100,7 +101,7 @@ fun ReceitasFavoritas(navController: NavController) {
                                     Icon(
                                         imageVector = if (favoritado) Icons.Filled.Favorite else Icons.Outlined.FavoriteBorder,
                                         contentDescription = "Favoritar",
-                                        tint = if (favoritado) Color(0xFFec7e30) else Color.Black
+                                        tint = if (favoritado) Color(0xFF75A902) else Color.Black
                                     )
                                 }
                             }

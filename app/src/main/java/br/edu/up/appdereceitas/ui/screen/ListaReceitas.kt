@@ -92,7 +92,7 @@ fun ListaReceitas(navController: NavController) {
                 Text(
                     text = "Receitas",
                     fontSize = 18.sp,
-                    color = Color.Gray,
+                    color = Color(0xFF75A902),
                     fontWeight = FontWeight.Bold
                 )
             }
@@ -108,7 +108,7 @@ fun ListaReceitas(navController: NavController) {
                         ElevatedButton(
                             onClick = { navController.navigate("_detalhes") },
                             colors = ButtonDefaults.elevatedButtonColors(
-                                containerColor = Color(0xFFf1f1f1),
+                                containerColor = Color.White,
                                 contentColor = Color.White
                             ),
                             modifier = Modifier
@@ -135,7 +135,7 @@ fun ListaReceitas(navController: NavController) {
                                     Icon(
                                         imageVector = if (favoritado) Icons.Default.Favorite else Icons.Outlined.FavoriteBorder,
                                         contentDescription = "Favoritar",
-                                        tint = if (favoritado) Color(0xFFec7e30) else Color.Black
+                                        tint = if (favoritado) Color(0xFF75A902) else Color.Black
                                     )
                                 }
                             }
@@ -154,7 +154,7 @@ fun ListaReceitas(navController: NavController) {
                         ElevatedButton(
                             onClick = { navController.navigate("_detalhes") },
                             colors = ButtonDefaults.elevatedButtonColors(
-                                containerColor = Color(0xFFf1f1f1),
+                                containerColor = Color.White,
                                 contentColor = Color.White
                             ),
                             modifier = Modifier
@@ -171,7 +171,7 @@ fun ListaReceitas(navController: NavController) {
                                 Text(
                                     modifier = Modifier
                                         .padding(20.dp),
-                                    text = "Bolo de chocolate",
+                                    text = "Bolo de chocolate 2",
                                     fontSize =  17.sp,
                                     color = Color.Black,
                                     fontWeight = FontWeight.W500
@@ -181,7 +181,7 @@ fun ListaReceitas(navController: NavController) {
                                     Icon(
                                         imageVector = if (favoritado) Icons.Default.Favorite else Icons.Outlined.FavoriteBorder,
                                         contentDescription = "Favoritar",
-                                        tint = if (favoritado) Color(0xFFec7e30) else Color.Black
+                                        tint = if (favoritado) Color(0xFF75A902) else Color.Black
                                     )
                                 }
                             }

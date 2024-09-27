@@ -46,7 +46,7 @@ fun AppBottomBar(navController: NavController) {
             )
             BottomBarBotao(
                 icon = Icons.Default.Favorite,
-                label = "Favoritos",
+                label = "Receitas Favoritas",
                 onClick = { navController.navigate("_receitasfavoritas") }
             )
 

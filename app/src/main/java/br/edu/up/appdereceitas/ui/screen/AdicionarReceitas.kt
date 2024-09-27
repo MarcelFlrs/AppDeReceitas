@@ -1,7 +1,5 @@
 package br.edu.up.appdereceitas.ui.screen
 
-
-
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -9,6 +7,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ElevatedButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
@@ -62,7 +61,7 @@ fun AdicionarReceitas(navController: NavController) {
                 Text(
                     text = "Adicionar Receita",
                     fontSize = 18.sp,
-                    color = Color.Gray,
+                    color = Color(0xFF75A902),
                     fontWeight = FontWeight.Bold
                 )
             }
@@ -72,7 +71,7 @@ fun AdicionarReceitas(navController: NavController) {
                     .padding(16.dp)
             ) {
                 TextField(
-                    value = "titulo",
+                    value = "",
                     onValueChange = {},
                     label = { Text("Título") },
                     modifier = Modifier.fillMaxWidth()
@@ -80,7 +79,7 @@ fun AdicionarReceitas(navController: NavController) {
                 Spacer(modifier = Modifier.height(8.dp))
 
                 TextField(
-                    value = "descricao",
+                    value = "",
                     onValueChange = { },
                     label = { Text("Descrição") },
                     modifier = Modifier.fillMaxWidth()
@@ -88,7 +87,7 @@ fun AdicionarReceitas(navController: NavController) {
                 Spacer(modifier = Modifier.height(8.dp))
 
                 TextField(
-                    value = "ingredientes",
+                    value = "",
                     onValueChange = {},
                     label = { Text("Ingredientes") },
                     modifier = Modifier.fillMaxWidth(),
@@ -97,7 +96,7 @@ fun AdicionarReceitas(navController: NavController) {
                 Spacer(modifier = Modifier.height(8.dp))
 
                 TextField(
-                    value = "tempoPreparo",
+                    value = "",
                     onValueChange = {},
                     label = { Text("Tempo de Preparo") },
                     modifier = Modifier.fillMaxWidth(),
@@ -106,7 +105,7 @@ fun AdicionarReceitas(navController: NavController) {
                 Spacer(modifier = Modifier.height(8.dp))
 
                 TextField(
-                    value = "categoriaSelecionada",
+                    value = "",
                     onValueChange = {},
                     label = { Text("Categoria") },
                     modifier = Modifier.fillMaxWidth(),
@@ -115,7 +114,7 @@ fun AdicionarReceitas(navController: NavController) {
                 Spacer(modifier = Modifier.height(8.dp))
 
                 TextField(
-                    value = "tempoCozimento",
+                    value = "",
                     onValueChange = {},
                     label = { Text("Tempo de Cozimento") },
                     modifier = Modifier.fillMaxWidth(),
@@ -124,7 +123,7 @@ fun AdicionarReceitas(navController: NavController) {
                 Spacer(modifier = Modifier.height(8.dp))
 
                 TextField(
-                    value = "tempoDescanso",
+                    value = "",
                     onValueChange = {},
                     label = { Text("Tempo de Descanso") },
                     modifier = Modifier.fillMaxWidth(),
@@ -133,7 +132,7 @@ fun AdicionarReceitas(navController: NavController) {
                 Spacer(modifier = Modifier.height(8.dp))
 
                 TextField(
-                    value = "tempoTotal",
+                    value = "",
                     onValueChange = {},
                     label = { Text("Tempo Total") },
                     modifier = Modifier.fillMaxWidth(),
@@ -142,12 +141,19 @@ fun AdicionarReceitas(navController: NavController) {
                 Spacer(modifier = Modifier.height(8.dp))
 
                 ElevatedButton(
-                    onClick = {
-                            navController.popBackStack()
-                    },
-                    modifier = Modifier.padding(vertical = 16.dp)
+                    onClick = { navController.popBackStack() },
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(vertical = 16.dp),
+                    colors = ButtonDefaults.elevatedButtonColors(
+                        containerColor = Color(0xFFF4FFD6),
+                        contentColor = Color(0xFF75A902)
+                    )
                 ) {
-                    Text("Salvar Receita")
+                    Text(
+                        text = "Salvar Receita",
+                        fontWeight = FontWeight.Bold
+                    )
                 }
             }
         }
