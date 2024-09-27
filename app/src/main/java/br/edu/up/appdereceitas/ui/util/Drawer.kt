@@ -10,8 +10,10 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 
@@ -23,20 +25,28 @@ fun DrawerContent(navController: NavController) {
         modifier = Modifier
             .fillMaxHeight()
             .fillMaxWidth(drawerWidth)
-            .background(Color.White)
+            .background(Color(0xFF457304))
             .padding(16.dp)
     ) {
         Column {
 
-
-            Text(
-                text = "Menu",
-                style = MaterialTheme.typography.titleLarge,
-                modifier = Modifier.padding(bottom = 16.dp)
-            )
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth(),
+                contentAlignment = Alignment.Center
+            ){
+                Text(
+                    text = "Menu",
+                    textAlign = TextAlign.Center,
+                    style = MaterialTheme.typography.titleLarge,
+                    color = Color.White,
+                    modifier = Modifier.padding(bottom = 16.dp)
+                )
+            }
 
             Text(
                 text = "Receitas",
+                color = Color.White,
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(8.dp)
@@ -47,6 +57,7 @@ fun DrawerContent(navController: NavController) {
 
             Text(
                 text = "Categorias",
+                color = Color.White,
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(8.dp)
