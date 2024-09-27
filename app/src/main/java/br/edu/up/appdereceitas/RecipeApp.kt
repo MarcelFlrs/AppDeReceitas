@@ -23,23 +23,22 @@ fun RecipeApp() {
 
         NavHost(navController = navController, startDestination = "_receitas") {
 
-
             composable("_categorias") {
-                CategoriaReceitas()
+                CategoriaReceitas(navController)
             }
 
 
             composable("_receitas") {
-                ListaReceitas()
+                ListaReceitas(navController)
             }
 
-            composable("detalhes/{receitaNome}") {
-                DetalhesReceita()
+            composable("_detalhes") {
+                DetalhesReceita(navController)
             }
 
 
-            composable("adicionar") {
-                AdicionarReceitas()
+            composable("_adicionarReceita") {
+                AdicionarReceitas(navController)
             }
 
         }

@@ -1,7 +1,10 @@
 package br.edu.up.appdereceitas.ui.screen
 
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.ElevatedButton
@@ -9,15 +12,17 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import androidx.navigation.compose.rememberNavController
+import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import br.edu.up.appdereceitas.ui.util.AppTopBar
 
 
 @Composable
-fun DetalhesReceita() {
-    val navController = rememberNavController()
+fun DetalhesReceita(navController: NavController) {
 
     Scaffold(
         topBar = {
@@ -27,19 +32,34 @@ fun DetalhesReceita() {
             )
         }
     ) { innerPadding ->
-        Column(
-            modifier = Modifier
-                .padding(innerPadding)
-                .padding(16.dp)
-        ) {
+
+        Column(modifier = Modifier.padding(innerPadding)) {
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .background(Color(0xFF457304))
+                    .padding(vertical = 5.dp),
+                contentAlignment = Alignment.Center
+            ) {
+                Text(
+                    text = "Receitas",
+                    fontSize = 18.sp,
+                    color = Color.White
+                )
+            }
+
+            Column(
+                modifier = Modifier
+                    .padding(16.dp)
+            ) {
             Text(
-                text = "Receita 1",
+                text = "Bolo de chocolate",
                 style = MaterialTheme.typography.titleLarge,
                 modifier = Modifier.padding(bottom = 8.dp)
             )
 
             Text(
-                text = "Descrição: Esta é a Receita 1",
+                text = "Descrição: Bolo de chocolate com um toque especial",
                 style = MaterialTheme.typography.bodyMedium,
                 modifier = Modifier.padding(bottom = 8.dp)
             )
@@ -77,15 +97,16 @@ fun DetalhesReceita() {
             Spacer(modifier = Modifier.height(16.dp))
 
 
-            ElevatedButton(
-                onClick = {
-                    navController.popBackStack()
-                },
-                modifier = Modifier.padding(vertical = 16.dp)
-            ) {
-                Text("Apagar Receita")
+                ElevatedButton(
+                    onClick = {
+                        navController.popBackStack()
+                    },
+                    modifier = Modifier.padding(vertical = 16.dp)
+                    ){
+                    Text("Apagar Receita")
+                }
+            }
         }
-    }
     }
 }
 
