@@ -102,10 +102,10 @@ fun CategoriaReceitas(navController: NavController) {
                             modifier = Modifier
 
                                 .fillMaxWidth()
-                                .padding(top = 15.dp, bottom = 5.dp,),
+                                .padding(top = 15.dp, bottom = 5.dp),
                             shape = RoundedCornerShape(2.dp)
                         ) {
-                            Row (
+                            Row(
                                 modifier = Modifier.fillMaxWidth(),
                                 horizontalArrangement = Arrangement.SpaceBetween,
                                 verticalAlignment = Alignment.CenterVertically
@@ -114,7 +114,7 @@ fun CategoriaReceitas(navController: NavController) {
                                     modifier = Modifier
                                         .padding(20.dp),
                                     text = "Café da Manhã",
-                                    fontSize =  17.sp,
+                                    fontSize = 17.sp,
                                     color = Color.Black,
                                     fontWeight = FontWeight.W500
 
@@ -149,7 +149,7 @@ fun CategoriaReceitas(navController: NavController) {
                                 .padding(vertical = 5.dp),
                             shape = RoundedCornerShape(2.dp)
                         ) {
-                            Row (
+                            Row(
                                 modifier = Modifier.fillMaxWidth(),
                                 horizontalArrangement = Arrangement.SpaceBetween,
                                 verticalAlignment = Alignment.CenterVertically
@@ -158,7 +158,7 @@ fun CategoriaReceitas(navController: NavController) {
                                     modifier = Modifier
                                         .padding(20.dp),
                                     text = "Sobremesa",
-                                    fontSize =  17.sp,
+                                    fontSize = 17.sp,
                                     color = Color.Black,
                                     fontWeight = FontWeight.W500
 

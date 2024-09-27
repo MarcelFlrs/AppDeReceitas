@@ -41,25 +41,20 @@ import br.edu.up.appdereceitas.ui.util.AppTopBar
 @Composable
 fun ListaReceitas(navController: NavController) {
 
-    Scaffold(
-        topBar = {
-            AppTopBar(
-                title = {
-                    Text(
-                        text = "TasteBook",
-                        style = MaterialTheme.typography.titleLarge.copy(
-                            fontWeight = FontWeight.Bold,
-                        ),
-                        modifier = Modifier.fillMaxWidth()
-                    )
-                },
-                navController = navController
-            )
-        },
+    Scaffold(topBar = {
+        AppTopBar(
+            title = {
+                Text(
+                    text = "TasteBook", style = MaterialTheme.typography.titleLarge.copy(
+                        fontWeight = FontWeight.Bold,
+                    ), modifier = Modifier.fillMaxWidth()
+                )
+            }, navController = navController
+        )
+    },
 
         floatingActionButton = {
-            FloatingActionButton(
-                containerColor = Color(0xFF75A902),
+            FloatingActionButton(containerColor = Color(0xFF75A902),
                 contentColor = Color.White,
                 onClick = {
                     navController.navigate("_adicionarReceita")
@@ -70,21 +65,18 @@ fun ListaReceitas(navController: NavController) {
 
         bottomBar = {
             AppBottomBar(navController = navController)
-        }
-    ) { innerPadding ->
+        }) { innerPadding ->
 
         Column(modifier = Modifier.padding(innerPadding)) {
-            Box(
-                modifier = Modifier
-                    .shadow(8.dp)
-                    .graphicsLayer {
-                        shadowElevation = 8.dp.toPx()
-                    }
-                    .fillMaxWidth()
-                    .background(Color.White)
-                    .padding(vertical = 10.dp),
-                contentAlignment = Alignment.Center
-            ) {
+            Box(modifier = Modifier
+                .shadow(8.dp)
+                .graphicsLayer {
+                    shadowElevation = 8.dp.toPx()
+                }
+                .fillMaxWidth()
+                .background(Color.White)
+                .padding(vertical = 10.dp),
+                contentAlignment = Alignment.Center) {
                 Text(
                     text = "Receitas",
                     fontSize = 18.sp,
@@ -98,31 +90,28 @@ fun ListaReceitas(navController: NavController) {
                     var favoritado by remember { mutableStateOf(false) }
 
                     Box(
-                        modifier = Modifier
-                            .fillMaxWidth(),
+                        modifier = Modifier.fillMaxWidth(),
                     ) {
                         ElevatedButton(
                             onClick = { navController.navigate("_detalhes") },
                             colors = ButtonDefaults.elevatedButtonColors(
-                                containerColor = Color.White,
-                                contentColor = Color.White
+                                containerColor = Color.White, contentColor = Color.White
                             ),
                             modifier = Modifier
 
                                 .fillMaxWidth()
-                                .padding(top = 15.dp, bottom = 5.dp,),
+                                .padding(top = 15.dp, bottom = 5.dp),
                             shape = RoundedCornerShape(2.dp)
                         ) {
-                            Row (
+                            Row(
                                 modifier = Modifier.fillMaxWidth(),
                                 horizontalArrangement = Arrangement.SpaceBetween,
                                 verticalAlignment = Alignment.CenterVertically
                             ) {
                                 Text(
-                                    modifier = Modifier
-                                        .padding(20.dp),
+                                    modifier = Modifier.padding(20.dp),
                                     text = "Bolo de chocolate",
-                                    fontSize =  17.sp,
+                                    fontSize = 17.sp,
                                     color = Color.Black,
                                     fontWeight = FontWeight.W500
 
@@ -144,14 +133,12 @@ fun ListaReceitas(navController: NavController) {
                     var favoritado by remember { mutableStateOf(false) }
 
                     Box(
-                        modifier = Modifier
-                            .fillMaxWidth(),
+                        modifier = Modifier.fillMaxWidth(),
                     ) {
                         ElevatedButton(
                             onClick = { navController.navigate("_detalhes") },
                             colors = ButtonDefaults.elevatedButtonColors(
-                                containerColor = Color.White,
-                                contentColor = Color.White
+                                containerColor = Color.White, contentColor = Color.White
                             ),
                             modifier = Modifier
 
@@ -159,16 +146,15 @@ fun ListaReceitas(navController: NavController) {
                                 .padding(vertical = 5.dp),
                             shape = RoundedCornerShape(2.dp)
                         ) {
-                            Row (
+                            Row(
                                 modifier = Modifier.fillMaxWidth(),
                                 horizontalArrangement = Arrangement.SpaceBetween,
                                 verticalAlignment = Alignment.CenterVertically
                             ) {
                                 Text(
-                                    modifier = Modifier
-                                        .padding(20.dp),
+                                    modifier = Modifier.padding(20.dp),
                                     text = "Bolo de chocolate 2",
-                                    fontSize =  17.sp,
+                                    fontSize = 17.sp,
                                     color = Color.Black,
                                     fontWeight = FontWeight.W500
 

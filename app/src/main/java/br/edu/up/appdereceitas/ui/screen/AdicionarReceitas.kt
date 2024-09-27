@@ -28,36 +28,29 @@ import br.edu.up.appdereceitas.ui.util.AppTopBar
 @Composable
 fun AdicionarReceitas(navController: NavController) {
 
-    Scaffold(
-        topBar = {
-            AppTopBar(
-                title = {
-                    Text(
-                        text = "TasteBook",
-                        style = MaterialTheme.typography.titleLarge.copy(
-                            fontWeight = FontWeight.Bold,
-                        ),
-                        modifier = Modifier.fillMaxWidth()
-                    )
-                },
-                navController = navController
-            )
-        }
-    ) { innerPadding ->
+    Scaffold(topBar = {
+        AppTopBar(
+            title = {
+                Text(
+                    text = "TasteBook", style = MaterialTheme.typography.titleLarge.copy(
+                        fontWeight = FontWeight.Bold,
+                    ), modifier = Modifier.fillMaxWidth()
+                )
+            }, navController = navController
+        )
+    }) { innerPadding ->
 
         Column(modifier = Modifier.padding(innerPadding)) {
 
-            Box(
-                modifier = Modifier
-                    .shadow(8.dp)
-                    .graphicsLayer {
-                        shadowElevation = 8.dp.toPx()
-                    }
-                    .fillMaxWidth()
-                    .background(Color.White)
-                    .padding(vertical = 10.dp),
-                contentAlignment = Alignment.Center
-            ) {
+            Box(modifier = Modifier
+                .shadow(8.dp)
+                .graphicsLayer {
+                    shadowElevation = 8.dp.toPx()
+                }
+                .fillMaxWidth()
+                .background(Color.White)
+                .padding(vertical = 10.dp),
+                contentAlignment = Alignment.Center) {
                 Text(
                     text = "Adicionar Receita",
                     fontSize = 18.sp,
@@ -67,77 +60,62 @@ fun AdicionarReceitas(navController: NavController) {
             }
 
             Column(
-                modifier = Modifier
-                    .padding(16.dp)
+                modifier = Modifier.padding(16.dp)
             ) {
-                TextField(
-                    value = "",
+                TextField(value = "",
                     onValueChange = {},
                     label = { Text("Título") },
                     modifier = Modifier.fillMaxWidth()
                 )
                 Spacer(modifier = Modifier.height(8.dp))
 
-                TextField(
-                    value = "",
+                TextField(value = "",
                     onValueChange = { },
                     label = { Text("Descrição") },
                     modifier = Modifier.fillMaxWidth()
                 )
                 Spacer(modifier = Modifier.height(8.dp))
 
-                TextField(
-                    value = "",
+                TextField(value = "",
                     onValueChange = {},
                     label = { Text("Ingredientes") },
                     modifier = Modifier.fillMaxWidth(),
-                    placeholder = { Text("Ex: Arroz, Feijão") }
-                )
+                    placeholder = { Text("Ex: Arroz, Feijão") })
                 Spacer(modifier = Modifier.height(8.dp))
 
-                TextField(
-                    value = "",
+                TextField(value = "",
                     onValueChange = {},
                     label = { Text("Tempo de Preparo") },
                     modifier = Modifier.fillMaxWidth(),
-                    placeholder = { Text("Ex: 10 minutos") }
-                )
+                    placeholder = { Text("Ex: 10 minutos") })
                 Spacer(modifier = Modifier.height(8.dp))
 
-                TextField(
-                    value = "",
+                TextField(value = "",
                     onValueChange = {},
                     label = { Text("Categoria") },
                     modifier = Modifier.fillMaxWidth(),
-                    placeholder = { Text("Ex: Sobremesa") }
-                )
+                    placeholder = { Text("Ex: Sobremesa") })
                 Spacer(modifier = Modifier.height(8.dp))
 
-                TextField(
-                    value = "",
+                TextField(value = "",
                     onValueChange = {},
                     label = { Text("Tempo de Cozimento") },
                     modifier = Modifier.fillMaxWidth(),
-                    placeholder = { Text("Ex: 20 minutos") }
-                )
+                    placeholder = { Text("Ex: 20 minutos") })
                 Spacer(modifier = Modifier.height(8.dp))
 
-                TextField(
-                    value = "",
+                TextField(value = "",
                     onValueChange = {},
                     label = { Text("Tempo de Descanso") },
                     modifier = Modifier.fillMaxWidth(),
-                    placeholder = { Text("Ex: 15 minutos") }
-                )
+                    placeholder = { Text("Ex: 15 minutos") })
                 Spacer(modifier = Modifier.height(8.dp))
 
-                TextField(
-                    value = "",
+                TextField(value = "",
                     onValueChange = {},
                     label = { Text("Tempo Total") },
                     modifier = Modifier.fillMaxWidth(),
-                    placeholder = { Text("Ex: 45 minutos") }
-                )
+                    placeholder = { Text("Ex: 45 minutos") })
                 Spacer(modifier = Modifier.height(8.dp))
 
                 ElevatedButton(
@@ -146,13 +124,11 @@ fun AdicionarReceitas(navController: NavController) {
                         .fillMaxWidth()
                         .padding(vertical = 16.dp),
                     colors = ButtonDefaults.elevatedButtonColors(
-                        containerColor = Color(0xFFF4FFD6),
-                        contentColor = Color(0xFF75A902)
+                        containerColor = Color(0xFFF4FFD6), contentColor = Color(0xFF75A902)
                     )
                 ) {
                     Text(
-                        text = "Salvar Receita",
-                        fontWeight = FontWeight.Bold
+                        text = "Salvar Receita", fontWeight = FontWeight.Bold
                     )
                 }
             }
