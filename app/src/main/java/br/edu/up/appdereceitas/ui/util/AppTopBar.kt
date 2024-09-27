@@ -11,7 +11,11 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.graphicsLayer
+import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -39,9 +43,9 @@ fun AppTopBar(
             }
         },
         colors = TopAppBarDefaults.topAppBarColors(
-            containerColor = Color(0xFFec7e30),
-            titleContentColor = Color.White,
-            navigationIconContentColor = Color.White
+            containerColor = Color(0xFFf1f1f1),
+            titleContentColor = Color(0xFFec7e30),
+            navigationIconContentColor = Color.Black
         )
     )
 

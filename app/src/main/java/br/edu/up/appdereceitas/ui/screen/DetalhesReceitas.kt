@@ -14,7 +14,10 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.graphicsLayer
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
@@ -27,7 +30,15 @@ fun DetalhesReceita(navController: NavController) {
     Scaffold(
         topBar = {
             AppTopBar(
-                title = { Text("Detalhes da Receita") },
+                title = {
+                    Text(
+                        text = "TasteBook",
+                        style = MaterialTheme.typography.titleLarge.copy(
+                            fontWeight = FontWeight.Bold,
+                        ),
+                        modifier = Modifier.fillMaxWidth()
+                    )
+                },
                 navController = navController
             )
         }
@@ -37,8 +48,12 @@ fun DetalhesReceita(navController: NavController) {
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .background(Color(0xFF457304))
-                    .padding(vertical = 5.dp),
+                    .shadow(8.dp)
+                    .graphicsLayer {
+                        shadowElevation = 8.dp.toPx()
+                    }
+                    .background(Color(0xFFec7e30))
+                    .padding(vertical = 10.dp),
                 contentAlignment = Alignment.Center
             ) {
                 Text(
