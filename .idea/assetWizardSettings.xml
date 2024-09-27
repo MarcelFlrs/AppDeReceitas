@@ -79,7 +79,7 @@
                                             <option name="values">
                                               <map>
                                                 <entry key="color" value="000000" />
-                                                <entry key="imagePath" value="C:\Users\Pichau\Documents\GitHub\AppDeReceitas\app\src\main\res\drawable\logo_tastebook.jpg" />
+                                                <entry key="imagePath" value="C:\Users\Pichau\Documents\GitHub\AppDeReceitas\app\src\main\res\drawable\logo_tastebook_transparente.png" />
                                                 <entry key="scalingPercent" value="71" />
                                               </map>
                                             </option>
@@ -108,6 +108,12 @@
                                           </PersistentState>
                                         </value>
                                       </entry>
+                                    </map>
+                                  </option>
+                                  <option name="values">
+                                    <map>
+                                      <entry key="backgroundAssetType" value="COLOR" />
+                                      <entry key="backgroundColor" value="ec7e30" />
                                     </map>
                                   </option>
                                 </PersistentState>
