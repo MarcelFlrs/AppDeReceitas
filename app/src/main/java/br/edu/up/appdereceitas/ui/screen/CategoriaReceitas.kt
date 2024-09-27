@@ -54,8 +54,8 @@ fun CategoriaReceitas(navController: NavController) {
 
         floatingActionButton = {
             FloatingActionButton(
-                containerColor = Color(0xFF75A902),
-                contentColor = Color.White,
+                containerColor = Color.White,
+                contentColor = Color(0xFF75A902),
                 onClick = {}) {
                 Icon(Icons.Default.Add, contentDescription = "Adicionar Categoria")
             }
