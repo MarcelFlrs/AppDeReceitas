@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "941945567774",
+    "project_id": "tastebook-c68d0",
+    "storage_bucket": "tastebook-c68d0.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:941945567774:android:bc964eb9a4f88bbbc48c0f",
+        "android_client_info": {
+          "package_name": "br.edu.up.appdereceitas"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC8xZSq27JDqCE9rMv2OTiVPgebD2C4v84"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
