@@ -20,8 +20,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
-import br.edu.up.appdereceitas.ui.util.AppBottomBar
-import br.edu.up.appdereceitas.ui.util.AppTopBar
+import br.edu.up.appdereceitas.ui.screen.util.AppBottomBar
+import br.edu.up.appdereceitas.ui.screen.util.AppTopBar
 
 @Composable
 fun DetalhesReceita(navController: NavController) {
@@ -109,7 +109,6 @@ fun DetalhesReceita(navController: NavController) {
                 Text(
                     text = "Tempo de Preparo: 40 min\n" +
                             "Tempo de Cozimento: 30 min\n" +
-                            "Tempo de Descanso: 25 min\n" +
                             "Tempo Total: 95 min",
                     style = MaterialTheme.typography.bodyMedium,
                     modifier = Modifier.padding(bottom = 12.dp)

@@ -23,7 +23,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
-import br.edu.up.appdereceitas.ui.util.AppTopBar
+import br.edu.up.appdereceitas.ui.screen.util.AppTopBar
 
 @Composable
 fun AdicionarReceitas(navController: NavController) {
@@ -119,7 +119,10 @@ fun AdicionarReceitas(navController: NavController) {
                 Spacer(modifier = Modifier.height(8.dp))
 
                 ElevatedButton(
-                    onClick = { navController.popBackStack() },
+                    onClick = {  },
+
+
+
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(vertical = 16.dp),

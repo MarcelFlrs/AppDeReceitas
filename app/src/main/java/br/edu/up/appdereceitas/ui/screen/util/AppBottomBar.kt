@@ -1,4 +1,4 @@
-package br.edu.up.appdereceitas.ui.util
+package br.edu.up.appdereceitas.ui.screen.util
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement

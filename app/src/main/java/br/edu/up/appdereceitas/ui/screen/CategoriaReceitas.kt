@@ -30,8 +30,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
-import br.edu.up.appdereceitas.ui.util.AppBottomBar
-import br.edu.up.appdereceitas.ui.util.AppTopBar
+import br.edu.up.appdereceitas.ui.screen.util.AppBottomBar
+import br.edu.up.appdereceitas.ui.screen.util.AppTopBar
 
 @Composable
 fun CategoriaReceitas(navController: NavController) {

@@ -1,4 +1,4 @@
-package br.edu.up.appdereceitas.ui.util
+package br.edu.up.appdereceitas.ui.screen.util
 
 import androidx.compose.foundation.layout.Row
 import androidx.compose.material.icons.Icons
