@@ -4,6 +4,7 @@ plugins {
 
     id("com.google.gms.google-services")
     id ("kotlin-android")
+    id ("kotlin-kapt")
 }
 
 android {
@@ -57,6 +58,9 @@ dependencies {
 
     implementation(platform("com.google.firebase:firebase-bom:33.5.1"))
     implementation("com.google.firebase:firebase-analytics")
+
+    kapt ("androidx.room:room-compiler:2.6.1")
+
     implementation(libs.androidx.compose.ui.text)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)

@@ -7,6 +7,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import br.edu.up.appdereceitas.dados.model.Receita
 import br.edu.up.appdereceitas.ui.screen.CategoriaReceitas
 import br.edu.up.appdereceitas.ui.screen.ListaReceitas
 import br.edu.up.appdereceitas.ui.screen.AdicionarReceitas
@@ -16,14 +17,11 @@ import br.edu.up.appdereceitas.ui.theme.AppDeReceitasTheme
 import br.edu.up.appdereceitas.ui.viewmodel.ReceitaViewModel
 
 
-@Preview(
-    device = Devices.PIXEL
-)
+
 @Composable
-fun RecipeApp() {
+fun RecipeApp(viewModelReceita: ReceitaViewModel) {
     AppDeReceitasTheme{
         val navController = rememberNavController()
-        val receitaViewModel: ReceitaViewModel = viewModel()
 
         NavHost(
             navController = navController, startDestination = "_receitas",
@@ -35,7 +33,7 @@ fun RecipeApp() {
 
 
             composable("_receitas") {
-                ListaReceitas(navController, receitaViewModel)
+                ListaReceitas(navController, viewModelReceita)
             }
 
             composable("_detalhes") {
@@ -44,7 +42,7 @@ fun RecipeApp() {
 
 
             composable("_adicionarReceita") {
-                AdicionarReceitas(navController, receitaViewModel)
+                AdicionarReceitas(navController, viewModelReceita)
             }
 
             composable ("_receitasfavoritas"){
