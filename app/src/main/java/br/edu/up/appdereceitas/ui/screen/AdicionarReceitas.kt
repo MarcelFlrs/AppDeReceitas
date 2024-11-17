@@ -69,12 +69,20 @@ fun AdicionarReceitas(navController: NavController, receitaViewModel: ReceitaVie
         Spacer(modifier = Modifier.height(32.dp))
 
         Button(onClick = {
-            val novaReceita = Receita(titulo = titulo, descricao = descricao, ingredientes = ingredientes , preparo = preparo)
+            val ingredientesLista = ingredientes.split(",").map { it.trim() }
+
+            val novaReceita = Receita(
+                titulo = titulo,
+                descricao = descricao,
+                ingredientes = ingredientesLista,
+                preparo = preparo
+            )
             receitaViewModel.addReceita(novaReceita)
             navController.popBackStack()
         }) {
             Text("Adicionar Receita")
         }
+
     }
 }
 

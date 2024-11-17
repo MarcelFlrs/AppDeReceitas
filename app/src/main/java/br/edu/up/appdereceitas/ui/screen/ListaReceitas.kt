@@ -101,7 +101,7 @@ fun ListaReceitas(navController: NavController, receitaViewModel: ReceitaViewMod
                         modifier = Modifier.fillMaxWidth(),
                     ) {
                         ElevatedButton(
-                            onClick = { navController.navigate("_detalhes") },
+                            onClick = { navController.navigate("_detalhes/${receita.id}") },
                             colors = ButtonDefaults.elevatedButtonColors(
                                 containerColor = Color.White, contentColor = Color.White
                             ),

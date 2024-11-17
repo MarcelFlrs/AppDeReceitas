@@ -11,6 +11,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
@@ -22,9 +23,26 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import br.edu.up.appdereceitas.ui.screen.util.AppBottomBar
 import br.edu.up.appdereceitas.ui.screen.util.AppTopBar
+import br.edu.up.appdereceitas.ui.viewmodel.ReceitaViewModel
 
 @Composable
-fun DetalhesReceita(navController: NavController) {
+fun DetalhesReceita(
+    navController: NavController,
+    viewModel: ReceitaViewModel,
+    receitaId: Int
+) {
+    val receita = viewModel.receitas.collectAsState(initial = emptyList())
+        .value.find { it.id == receitaId }
+
+    if (receita == null) {
+        Text(
+            text = "Receita não encontrada!",
+            modifier = Modifier.padding(16.dp),
+            style = MaterialTheme.typography.bodyMedium
+        )
+        return
+    }
+
     Scaffold(
         topBar = {
             AppTopBar(
@@ -63,7 +81,6 @@ fun DetalhesReceita(navController: NavController) {
                 )
             }
 
-
             Column(
                 modifier = Modifier
                     .padding(16.dp)
@@ -71,15 +88,14 @@ fun DetalhesReceita(navController: NavController) {
             ) {
 
                 Text(
-                    text = "Bolo de Chocolate",
+                    text = receita.titulo,
                     style = MaterialTheme.typography.titleLarge,
                     fontWeight = FontWeight.Bold,
                     modifier = Modifier.padding(bottom = 8.dp)
                 )
 
-
                 Text(
-                    text = "Descrição: Um bolo de chocolate delicioso e simples de fazer, perfeito para qualquer ocasião.",
+                    text = "Descrição: ${receita.descricao}",
                     style = MaterialTheme.typography.bodyMedium,
                     modifier = Modifier.padding(bottom = 12.dp)
                 )
@@ -91,31 +107,28 @@ fun DetalhesReceita(navController: NavController) {
                     modifier = Modifier.padding(bottom = 4.dp)
                 )
                 Text(
-                    text = "- 200g de chocolate amargo\n" +
-                            "- 150g de açúcar\n" +
-                            "- 3 ovos\n" +
-                            "- 100g de farinha de trigo\n" +
-                            "- 1 colher de sopa de fermento em pó",
+                    text = receita.ingredientes.joinToString("\n") { "- $it" },
                     style = MaterialTheme.typography.bodyMedium,
                     modifier = Modifier.padding(bottom = 12.dp)
                 )
 
                 Text(
-                    text = "Tempos:",
+                    text = "Preparo:",
                     style = MaterialTheme.typography.titleMedium,
                     fontWeight = FontWeight.Bold,
                     modifier = Modifier.padding(bottom = 4.dp)
                 )
                 Text(
-                    text = "Tempo de Preparo: 40 min\n" +
-                            "Tempo de Cozimento: 30 min\n" +
-                            "Tempo Total: 95 min",
+                    text = receita.preparo,
                     style = MaterialTheme.typography.bodyMedium,
                     modifier = Modifier.padding(bottom = 12.dp)
                 )
 
                 ElevatedButton(
-                    onClick = { navController.popBackStack() },
+                    onClick = {
+                        viewModel.deleteReceita(receita)
+                        navController.popBackStack()
+                    },
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(vertical = 16.dp),
