@@ -5,9 +5,13 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "receitas")
 data class Receita(
-    @PrimaryKey(autoGenerate = true) val id: Int = 0,
+    @PrimaryKey(autoGenerate = true)
+    var id: Int? = null,
     val titulo: String,
     val descricao: String,
     val ingredientes: List<String>,
-    val preparo: String
-)
+    val preparo: String,
+    val favoritado: Boolean = false
+){
+    constructor() : this(null, "", "", listOf(), "", false)
+}

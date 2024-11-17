@@ -10,6 +10,12 @@ class LocalReceitaRepository(
 
     override fun listarReceita(): Flow<List<Receita>> = receitaDao.listarReceitas()
 
+    override fun listarFavoritas(): Flow<List<Receita>> = receitaDao.listarFavoritas()
+
+    override suspend fun atualizarFavorito(id: Int, favoritado: Boolean) {
+        receitaDao.atualizarFavorito(id, favoritado)
+    }
+
     override suspend fun addReceita(receita: Receita) {
         receitaDao.insertReceita(receita)
     }
@@ -21,4 +27,6 @@ class LocalReceitaRepository(
     override suspend fun updateReceita(receita: Receita) {
         receitaDao.updateReceita(receita)
     }
+
+
 }

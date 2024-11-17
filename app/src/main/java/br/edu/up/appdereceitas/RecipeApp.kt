@@ -52,7 +52,7 @@ fun RecipeApp(viewModelReceita: ReceitaViewModel) {
             }
 
             composable ("_receitasfavoritas"){
-                ReceitasFavoritas(navController)
+                ReceitasFavoritas(navController, viewModelReceita)
             }
 
         }

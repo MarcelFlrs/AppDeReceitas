@@ -95,8 +95,6 @@ fun ListaReceitas(navController: NavController, receitaViewModel: ReceitaViewMod
 
             LazyColumn(modifier = Modifier.fillMaxWidth()) {
                 items(receitas) { receita ->
-                    var favoritado by remember { mutableStateOf(false) }
-
                     Box(
                         modifier = Modifier.fillMaxWidth(),
                     ) {
@@ -120,11 +118,16 @@ fun ListaReceitas(navController: NavController, receitaViewModel: ReceitaViewMod
                                     color = Color.Black,
                                     fontWeight = FontWeight.W500
                                 )
-                                IconButton(onClick = { favoritado = !favoritado }) {
+                                IconButton(onClick = {
+                                    val idReceita = receita.id
+                                    if (idReceita != null) {
+                                        receitaViewModel.atualizarFavorito(idReceita, !receita.favoritado)
+                                    }
+                                }) {
                                     Icon(
-                                        imageVector = if (favoritado) Icons.Default.Favorite else Icons.Outlined.FavoriteBorder,
+                                        imageVector = if (receita.favoritado) Icons.Default.Favorite else Icons.Outlined.FavoriteBorder,
                                         contentDescription = "Favoritar",
-                                        tint = if (favoritado) Color(0xFF75A902) else Color.Black
+                                        tint = if (receita.favoritado) Color(0xFF75A902) else Color.Black
                                     )
                                 }
                             }

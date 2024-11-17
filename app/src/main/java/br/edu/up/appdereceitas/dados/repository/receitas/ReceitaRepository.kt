@@ -8,9 +8,14 @@ interface ReceitaRepository {
 
     fun listarReceita(): Flow<List<Receita>>
 
+    fun listarFavoritas(): Flow<List<Receita>>
+
+    suspend fun atualizarFavorito(id: Int, favoritado: Boolean)
+
     suspend fun addReceita(receita: Receita)
 
     suspend fun deleteReceita(receita: Receita)
 
     suspend fun updateReceita(receita: Receita)
+
 }
