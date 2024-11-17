@@ -9,8 +9,6 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
-
-
 class ReceitaViewModel (
     private val repository: ReceitaRepository
 ) : ViewModel() {
@@ -33,13 +31,13 @@ class ReceitaViewModel (
         }
     }
 
-    private val _categorias = MutableStateFlow<List<Receita>>(emptyList())
-    val receitas: StateFlow<List<Receita>> get() = _categorias
+    private val _receitas = MutableStateFlow<List<Receita>>(emptyList())
+    val receitas: StateFlow<List<Receita>> get() = _receitas
 
     init {
         viewModelScope.launch {
             repository.listarReceita().collectLatest { listaDeReceita ->
-                _categorias.value = listaDeReceita
+                _receitas.value = listaDeReceita
             }
         }
     }

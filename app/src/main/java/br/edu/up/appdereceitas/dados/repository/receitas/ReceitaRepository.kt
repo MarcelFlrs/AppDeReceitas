@@ -11,7 +11,7 @@ class ReceitaRepository(
 ) {
     private val receitasRef = firebaseDatabase.getReference("receitas")
 
-    fun listarReceita(): Flow<List<Receita>> = receitaDao.listarReceita()
+    fun listarReceita(): Flow<List<Receita>> = receitaDao.listarReceitas()
 
     suspend fun addReceita(receita: Receita) {
         receitaDao.insertReceita(receita)

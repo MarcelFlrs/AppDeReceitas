@@ -14,7 +14,7 @@ import kotlinx.coroutines.flow.Flow
 interface ReceitaDao {
 
     @Query("SELECT * FROM receitas")
-    fun listarReceita(): Flow<List<Receita>>
+    fun listarReceitas(): Flow<List<Receita>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertReceita(receita: Receita)
