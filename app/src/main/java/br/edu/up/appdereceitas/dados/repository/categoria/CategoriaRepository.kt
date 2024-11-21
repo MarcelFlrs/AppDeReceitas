@@ -11,6 +11,6 @@ interface CategoriaRepository {
 
     suspend fun gravarCategoria(categoria: Categoria)
 
-    suspend fun buscarCategoriaPorId(idx: Int): Categoria?
+    suspend fun buscarCategoriaPorId(idx: Int?): Categoria?
 
 }

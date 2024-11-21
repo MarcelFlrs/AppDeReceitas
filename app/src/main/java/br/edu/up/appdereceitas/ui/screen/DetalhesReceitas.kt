@@ -5,13 +5,19 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ElevatedButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
@@ -64,6 +70,30 @@ fun DetalhesReceita(
         }
     ) { innerPadding ->
         Column(modifier = Modifier.padding(innerPadding)) {
+
+            var showDialog by remember { mutableStateOf(false) }
+
+            if (showDialog) {
+                AlertDialog(
+                    onDismissRequest = { showDialog = false },
+                    title = { Text("Excluir Categoria") },
+                    text = { Text("Tem certeza de que deseja excluir a receita \"${receita.titulo}\"?") },
+                    confirmButton = {
+                        TextButton(onClick = {
+                            viewModel.deleteReceita(receita)
+                            showDialog = false
+                            navController.popBackStack()
+                        }) {
+                            Text("Confirmar")
+                        }
+                    },
+                    dismissButton = {
+                        TextButton(onClick = { showDialog = false }) {
+                            Text("Cancelar")
+                        }
+                    }
+                )
+            }
 
             Box(
                 modifier = Modifier
@@ -127,8 +157,7 @@ fun DetalhesReceita(
 
                 ElevatedButton(
                     onClick = {
-                        viewModel.deleteReceita(receita)
-                        navController.popBackStack()
+                        showDialog = true
                     },
                     modifier = Modifier
                         .fillMaxWidth()

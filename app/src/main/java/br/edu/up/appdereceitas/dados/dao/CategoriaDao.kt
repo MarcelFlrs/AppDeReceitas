@@ -21,6 +21,6 @@ interface CategoriaDao {
     suspend fun gravarCategoria(categoria: Categoria)
 
     @Query("SELECT * FROM categorias WHERE id = :idx")
-    suspend fun getCategoriaById(idx: Int): Categoria
+    suspend fun getCategoriaById(idx: Int?): Categoria
 
 }

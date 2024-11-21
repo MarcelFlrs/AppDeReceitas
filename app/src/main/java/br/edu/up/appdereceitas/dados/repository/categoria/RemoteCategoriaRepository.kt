@@ -23,7 +23,7 @@ class RemoteCategoriaRepository : CategoriaRepository {
         }
     }
 
-    override suspend fun buscarCategoriaPorId(idx: Int): Categoria? {
+    override suspend fun buscarCategoriaPorId(idx: Int?): Categoria? {
         val documentSnapshot = categoriaCollection.document(idx.toString()).get().await()
         return if (documentSnapshot.exists()) {
             documentSnapshot.toObject(Categoria::class.java)

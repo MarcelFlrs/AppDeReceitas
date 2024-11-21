@@ -4,6 +4,7 @@ import android.widget.Toast
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -16,6 +17,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import br.edu.up.appdereceitas.dados.model.Categoria
+import br.edu.up.appdereceitas.dados.model.Receita
 import br.edu.up.appdereceitas.ui.screen.util.AppBottomBar
 import br.edu.up.appdereceitas.ui.screen.util.AppTopBar
 import br.edu.up.appdereceitas.ui.viewmodel.CategoriaViewModel
@@ -23,9 +25,28 @@ import br.edu.up.appdereceitas.ui.viewmodel.CategoriaViewModel
 @Composable
 fun GravarCategoria(
     navController: NavController,
+    categoriaId: Int?,
     viewModelCategoria: CategoriaViewModel
 ) {
+
+    var categoria by remember { mutableStateOf<Categoria?>(null) }
     var nomeCategoria by remember { mutableStateOf(TextFieldValue("")) }
+    var nome by remember { mutableStateOf("") }
+
+
+    LaunchedEffect(categoriaId) {
+        categoria = if (categoriaId != null) {
+            viewModelCategoria.getCategoriaById(categoriaId)
+        } else {
+            null
+        }
+    }
+
+    LaunchedEffect(categoria) {
+        if (categoria != null) {
+            nome = categoria!!.nome
+        }
+    }
 
     Scaffold(
         topBar = {
@@ -54,8 +75,8 @@ fun GravarCategoria(
             verticalArrangement = Arrangement.Center
         ) {
             TextField(
-                value = nomeCategoria,
-                onValueChange = { nomeCategoria = it },
+                value = nome,
+                onValueChange = { nome = it },
                 label = { Text("Nome da Categoria") },
                 modifier = Modifier.fillMaxWidth(),
                 isError = nomeCategoria.text.isBlank(),
@@ -66,12 +87,19 @@ fun GravarCategoria(
 
             ElevatedButton(
                 onClick = {
-                    if (nomeCategoria.text.isNotBlank()) {
-                        val categoria = Categoria(0, nomeCategoria.text)
-                        viewModelCategoria.gravarCategoria(categoria)
-                        navController.navigate("categorias")
+                    if (nome.isNotBlank()) {
+                        val novaCategoria = Categoria(
+                            id = categoriaId,
+                            nome = nome
+                        )
+                        viewModelCategoria.gravarCategoria(novaCategoria)
+                        navController.navigate("_categorias")
                     } else {
-                        Toast.makeText(navController.context, "Nome da categoria não pode ser vazio", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(
+                            navController.context,
+                            "Nome da categoria não pode ser vazio",
+                            Toast.LENGTH_SHORT
+                        ).show()
                     }
                 },
                 modifier = Modifier.fillMaxWidth(),
@@ -86,3 +114,4 @@ fun GravarCategoria(
         }
     }
 }
+

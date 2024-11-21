@@ -7,11 +7,8 @@
     import br.edu.up.appdereceitas.dados.repository.receitas.ReceitaRepository
     import kotlinx.coroutines.flow.Flow
     import kotlinx.coroutines.flow.MutableStateFlow
-    import kotlinx.coroutines.flow.SharingStarted
     import kotlinx.coroutines.flow.StateFlow
     import kotlinx.coroutines.flow.collectLatest
-    import kotlinx.coroutines.flow.flow
-    import kotlinx.coroutines.flow.stateIn
     import kotlinx.coroutines.launch
 
     class ReceitaViewModel (
@@ -23,9 +20,6 @@
                 repository.gravarReceita(receita)
             }
         }
-
-        private val _receita = MutableStateFlow<Receita?>(null)
-        val receita: StateFlow<Receita?> get() = _receita
 
         suspend fun getReceitaById(id: Int): Receita {
             return repository.buscarReceitaPorId(id)

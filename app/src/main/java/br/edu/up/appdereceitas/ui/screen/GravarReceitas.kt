@@ -1,21 +1,6 @@
-package br.edu.up.appdereceitas.ui.screen
-
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Button
-import androidx.compose.material3.DropdownMenu
-import androidx.compose.material3.Text
-import androidx.compose.material3.TextField
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableIntStateOf
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
+import androidx.compose.foundation.layout.*
+import androidx.compose.material3.*
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
@@ -25,7 +10,7 @@ import br.edu.up.appdereceitas.dados.model.Receita
 import br.edu.up.appdereceitas.ui.viewmodel.CategoriaViewModel
 import br.edu.up.appdereceitas.ui.viewmodel.ReceitaViewModel
 
-
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun GravarReceitas(
     navController: NavController,
@@ -49,6 +34,8 @@ fun GravarReceitas(
     var ingredientes by remember { mutableStateOf("") }
     var preparo by remember { mutableStateOf("") }
     var categoriaId by remember { mutableIntStateOf(0) }
+    var expanded by remember { mutableStateOf(false) }
+    var selectedCategoria by remember { mutableStateOf("Selecione a categoria") }
 
     LaunchedEffect(receita) {
         if (receita != null) {
@@ -56,7 +43,8 @@ fun GravarReceitas(
             descricao = receita!!.descricao
             ingredientes = receita!!.ingredientes.joinToString(", ")
             preparo = receita!!.preparo
-            categoriaId = receita!!.categoriaId!!
+            categoriaId = receita!!.categoriaId ?: 0
+            selectedCategoria = categorias.find { it.id == categoriaId }?.nome ?: "Selecione a categoria"
         }
     }
 
@@ -65,16 +53,37 @@ fun GravarReceitas(
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
 
-        // Seleção de Categoria
-        Text("Selecione a Categoria")
-        DropdownMenu(
-            expanded = categorias.isNotEmpty(),
-            onDismissRequest = { /* */ }
+
+        ExposedDropdownMenuBox(
+            expanded = expanded,
+            onExpandedChange = { expanded = !expanded }
         ) {
-            categorias.forEach { categoria ->
-                categoriaId = categoria.id!!
+            TextField(
+                value = selectedCategoria,
+                onValueChange = {},
+                label = { Text("Categoria") },
+                modifier = Modifier.fillMaxWidth(),
+                readOnly = true
+            )
+
+            ExposedDropdownMenu(
+                expanded = expanded,
+                onDismissRequest = { expanded = false }
+            ) {
+                categorias.forEach { categoria ->
+                    DropdownMenuItem(
+                        text = { Text(categoria.nome) },
+                        onClick = {
+                            categoriaId = categoria.id!!
+                            selectedCategoria = categoria.nome
+                            expanded = false
+                        }
+                    )
+                }
             }
         }
+
+        Spacer(modifier = Modifier.height(16.dp))
 
         TextField(
             value = titulo,
@@ -115,7 +124,6 @@ fun GravarReceitas(
         Button(onClick = {
             val ingredientesLista = ingredientes.split(",").map { it.trim() }
             val novaReceita = Receita(
-
                 id = receita?.id ?: 0,
                 titulo = titulo,
                 descricao = descricao,
@@ -131,6 +139,3 @@ fun GravarReceitas(
         }
     }
 }
-
-
-
