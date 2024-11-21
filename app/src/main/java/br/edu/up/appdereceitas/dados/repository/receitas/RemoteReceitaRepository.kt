@@ -37,32 +37,29 @@ class RemoteReceitaRepository: ReceitaRepository {
         return maxId + 1
     }
 
-    override suspend fun addReceita(receita: Receita) {
+    override suspend fun gravarReceita(receita: Receita) {
         val document: DocumentReference
 
-        if (receita.id == null){
-            receita.id = getId()
-            document = receitaCollection.document(receita.id.toString())
+        if (receita.id == 0) {
+            document = receitaCollection.document()
+            receita.id = document.id.hashCode()
         } else {
             document = receitaCollection.document(receita.id.toString())
         }
+
         document.set(receita).await()
     }
+
+    override suspend fun buscarReceitaPorId(id: Int): Receita? {
+        val document = receitaCollection.document(id.toString()).get().await()
+        return document.toObject(Receita::class.java)
+    }
+
+
 
     override suspend fun deleteReceita(receita: Receita) {
         receitaCollection.document(receita.id.toString()).delete().await()
     }
-
-     override suspend fun updateReceita(receita: Receita) {
-         val receitaRef = receitaCollection.document(receita.id.toString())
-
-         val dadosAtualizados = hashMapOf<String, Any>(
-             "titulo" to receita.titulo,
-             "ingredientes" to receita.ingredientes,
-             "preparo" to receita.preparo,
-         )
-         receitaRef.update(dadosAtualizados).await()
-     }
 
      override suspend fun atualizarFavorito(id: Int, favoritado: Boolean) {
         val receitaRef = receitaCollection.document(id.toString())

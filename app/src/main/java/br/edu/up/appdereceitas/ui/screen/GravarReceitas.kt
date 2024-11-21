@@ -19,13 +19,19 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import br.edu.up.appdereceitas.dados.model.Receita
 import br.edu.up.appdereceitas.ui.viewmodel.ReceitaViewModel
+import androidx.compose.runtime.collectAsState
+
 
 @Composable
-fun AdicionarReceitas(navController: NavController, receitaViewModel: ReceitaViewModel) {
-    var titulo by remember { mutableStateOf("") }
-    var descricao by remember { mutableStateOf("") }
-    var ingredientes by remember { mutableStateOf("") }
-    var preparo by remember { mutableStateOf("") }
+fun GravarReceitas(
+    navController: NavController,
+    receitaId: Int?,
+    viewModel: ReceitaViewModel
+) {
+    var titulo by remember { mutableStateOf(receita?.titulo ?: "") }
+    var descricao by remember { mutableStateOf(receita?.descricao ?: "") }
+    var ingredientes by remember { mutableStateOf(receita?.ingredientes ?: "") }
+    var preparo by remember { mutableStateOf(receita?.preparo ?: "") }
 
 
     Column(
@@ -72,15 +78,16 @@ fun AdicionarReceitas(navController: NavController, receitaViewModel: ReceitaVie
             val ingredientesLista = ingredientes.split(",").map { it.trim() }
 
             val novaReceita = Receita(
+                id = receita?.id ?: 0,
                 titulo = titulo,
                 descricao = descricao,
                 ingredientes = ingredientesLista,
                 preparo = preparo
             )
-            receitaViewModel.addReceita(novaReceita)
+            viewModel.gravarReceita(novaReceita)
             navController.popBackStack()
         }) {
-            Text("Adicionar Receita")
+            Text(if (receitaId == null) "Criar Receita" else "Salvar Alterações")
         }
 
     }

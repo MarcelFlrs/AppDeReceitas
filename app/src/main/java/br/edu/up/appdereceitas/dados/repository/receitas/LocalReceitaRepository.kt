@@ -16,16 +16,16 @@ class LocalReceitaRepository(
         receitaDao.atualizarFavorito(id, favoritado)
     }
 
-    override suspend fun addReceita(receita: Receita) {
-        receitaDao.insertReceita(receita)
+    override suspend fun gravarReceita(receita: Receita) {
+        receitaDao.gravarReceita(receita)
+    }
+
+    override suspend fun buscarReceitaPorId(idx: Int): Receita {
+        return receitaDao.getReceitaById(idx)
     }
 
     override suspend fun deleteReceita(receita: Receita) {
         receitaDao.deleteReceita(receita)
-    }
-
-    override suspend fun updateReceita(receita: Receita) {
-        receitaDao.updateReceita(receita)
     }
 
 

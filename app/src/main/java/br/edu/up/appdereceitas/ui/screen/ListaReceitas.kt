@@ -1,5 +1,6 @@
 package br.edu.up.appdereceitas.ui.screen
 
+import android.widget.Toast
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -12,6 +13,7 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.outlined.FavoriteBorder
 import androidx.compose.material3.ButtonDefaults
@@ -25,9 +27,6 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
@@ -40,6 +39,7 @@ import androidx.navigation.NavController
 import br.edu.up.appdereceitas.ui.screen.util.AppBottomBar
 import br.edu.up.appdereceitas.ui.screen.util.AppTopBar
 import br.edu.up.appdereceitas.ui.viewmodel.ReceitaViewModel
+
 
 @Composable
 fun ListaReceitas(navController: NavController, receitaViewModel: ReceitaViewModel) {
@@ -130,6 +130,16 @@ fun ListaReceitas(navController: NavController, receitaViewModel: ReceitaViewMod
                                         tint = if (receita.favoritado) Color(0xFF75A902) else Color.Black
                                     )
                                 }
+
+                                IconButton(onClick = {  navController.navigate("_gravar_receitas/${receita.id}") }) {
+                                    Icon(
+                                        imageVector = Icons.Default.Edit,
+                                        tint = Color.Black,
+                                        contentDescription = "Editar Receita"
+                                    )
+                                }
+
+
                             }
                         }
                     }

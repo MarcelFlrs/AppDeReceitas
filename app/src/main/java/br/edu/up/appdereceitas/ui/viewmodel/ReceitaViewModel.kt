@@ -4,31 +4,37 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import br.edu.up.appdereceitas.dados.model.Receita
 import br.edu.up.appdereceitas.dados.repository.receitas.ReceitaRepository
-import br.edu.up.appdereceitas.dados.repository.receitas.RemoteReceitaRepository
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 
 class ReceitaViewModel (
     private val repository: ReceitaRepository,
 ) : ViewModel() {
 
-    fun addReceita(receita: Receita) {
+    fun gravarReceita(receita: Receita) {
         viewModelScope.launch {
-            repository.addReceita(receita)
+            repository.gravarReceita(receita)
         }
     }
+
+    fun getReceitaById(id: Int): StateFlow<Receita?> = flow {
+        val receita = repository.buscarReceitaPorId(id)
+        emit(receita)
+    }.stateIn(
+        scope = viewModelScope,
+        started = SharingStarted.WhileSubscribed(),
+        initialValue = null
+    )
+
 
     fun deleteReceita(receita: Receita) {
         viewModelScope.launch {
             repository.deleteReceita(receita)
-        }
-    }
-
-    fun updateReceita(receita: Receita) {
-        viewModelScope.launch {
-            repository.updateReceita(receita)
         }
     }
 

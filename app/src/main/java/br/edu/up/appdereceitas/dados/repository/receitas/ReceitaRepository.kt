@@ -1,6 +1,5 @@
 package br.edu.up.appdereceitas.dados.repository.receitas
 
-
 import br.edu.up.appdereceitas.dados.model.Receita
 import kotlinx.coroutines.flow.Flow
 
@@ -12,10 +11,11 @@ interface ReceitaRepository {
 
     suspend fun atualizarFavorito(id: Int, favoritado: Boolean)
 
-    suspend fun addReceita(receita: Receita)
+    suspend fun gravarReceita(receita: Receita)
+
+    suspend fun buscarReceitaPorId(idx: Int): Receita
 
     suspend fun deleteReceita(receita: Receita)
 
-    suspend fun updateReceita(receita: Receita)
 
 }

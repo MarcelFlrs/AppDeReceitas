@@ -17,17 +17,18 @@ interface ReceitaDao {
     @Query("SELECT * FROM receitas")
     fun listarReceitas(): Flow<List<Receita>>
 
-    @Insert
-    suspend fun insertReceita(receita: Receita)
-
     @Delete
     suspend fun deleteReceita(receita: Receita)
 
-    @Update
-    suspend fun updateReceita(receita: Receita)
+    @Upsert
+    suspend fun gravarReceita(receita: Receita)
 
-    @Query("UPDATE receitas SET favoritado = :favoritado WHERE id = :id")
-    suspend fun atualizarFavorito(id: Int, favoritado: Boolean)
+    @Query("SELECT * FROM receitas WHERE id = :idx")
+    suspend fun getReceitaById(idx: Int): Receita
+
+
+    @Query("UPDATE receitas SET favoritado = :favoritado WHERE id = :idx")
+    suspend fun atualizarFavorito(idx: Int, favoritado: Boolean)
 
     @Query("SELECT * FROM receitas WHERE favoritado = 1")
     fun listarFavoritas(): Flow<List<Receita>>
