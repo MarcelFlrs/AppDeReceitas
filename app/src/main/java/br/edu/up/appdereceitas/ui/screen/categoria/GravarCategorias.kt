@@ -30,7 +30,7 @@ fun GravarCategoria(
 ) {
 
     var categoria by remember { mutableStateOf<Categoria?>(null) }
-    var nomeCategoria by remember { mutableStateOf(TextFieldValue("")) }
+    val nomeCategoria by remember { mutableStateOf(TextFieldValue("")) }
     var nome by remember { mutableStateOf("") }
 
 
