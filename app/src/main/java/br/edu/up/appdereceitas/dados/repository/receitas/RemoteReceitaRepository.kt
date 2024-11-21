@@ -1,12 +1,14 @@
 package br.edu.up.appdereceitas.dados.repository.receitas
 
+import br.edu.up.appdereceitas.dados.model.Categoria
+import br.edu.up.appdereceitas.dados.model.Receita
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
+import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.tasks.await
-import br.edu.up.appdereceitas.dados.model.Receita
 
 class RemoteReceitaRepository: ReceitaRepository {
 
@@ -42,6 +44,7 @@ class RemoteReceitaRepository: ReceitaRepository {
         if (receita.id == 0) {
             receita.id = getId()
             document = receitaCollection.document(receita.id.toString())
+
         } else {
             document = receitaCollection.document(receita.id.toString())
         }
@@ -63,6 +66,18 @@ class RemoteReceitaRepository: ReceitaRepository {
 
     override suspend fun deleteReceita(receita: Receita) {
         receitaCollection.document(receita.id.toString()).delete().await()
+    }
+
+    override fun buscarReceitaPorCategoria(categoria: Categoria): Flow<List<Receita>> {
+        return flow {
+            val receitas = receitaCollection
+                .whereEqualTo("categoriaId", categoria.id)
+                .get().await()
+                .documents.mapNotNull {
+                    it.toObject(Receita::class.java)
+                }
+            emit(receitas)
+        }
     }
 
      override suspend fun atualizarFavorito(id: Int, favoritado: Boolean) {

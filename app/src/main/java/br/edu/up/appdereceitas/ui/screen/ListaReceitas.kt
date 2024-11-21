@@ -1,6 +1,5 @@
 package br.edu.up.appdereceitas.ui.screen
 
-import android.widget.Toast
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -38,6 +37,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import br.edu.up.appdereceitas.ui.screen.util.AppBottomBar
 import br.edu.up.appdereceitas.ui.screen.util.AppTopBar
+import br.edu.up.appdereceitas.ui.viewmodel.CategoriaViewModel
 import br.edu.up.appdereceitas.ui.viewmodel.ReceitaViewModel
 
 

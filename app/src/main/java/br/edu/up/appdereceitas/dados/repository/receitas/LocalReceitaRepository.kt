@@ -1,6 +1,7 @@
 package br.edu.up.appdereceitas.dados.repository.receitas
 
 import br.edu.up.appdereceitas.dados.dao.ReceitaDao
+import br.edu.up.appdereceitas.dados.model.Categoria
 import br.edu.up.appdereceitas.dados.model.Receita
 import kotlinx.coroutines.flow.Flow
 
@@ -22,6 +23,10 @@ class LocalReceitaRepository(
 
     override suspend fun buscarReceitaPorId(idx: Int): Receita {
         return receitaDao.getReceitaById(idx)
+    }
+
+    override fun buscarReceitaPorCategoria(categoria: Categoria): Flow<List<Receita>> {
+        return receitaDao.getReceitasByCategoriaId(categoria.id)
     }
 
     override suspend fun deleteReceita(receita: Receita) {

@@ -33,6 +33,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import br.edu.up.appdereceitas.ui.screen.util.AppBottomBar
 import br.edu.up.appdereceitas.ui.screen.util.AppTopBar
+import br.edu.up.appdereceitas.ui.viewmodel.CategoriaViewModel
 import br.edu.up.appdereceitas.ui.viewmodel.ReceitaViewModel
 
 @Composable
