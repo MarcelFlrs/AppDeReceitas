@@ -9,6 +9,8 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -19,7 +21,6 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import br.edu.up.appdereceitas.dados.model.Receita
 import br.edu.up.appdereceitas.ui.viewmodel.ReceitaViewModel
-import androidx.compose.runtime.collectAsState
 
 
 @Composable
@@ -28,11 +29,31 @@ fun GravarReceitas(
     receitaId: Int?,
     viewModel: ReceitaViewModel
 ) {
-    var titulo by remember { mutableStateOf(receita?.titulo ?: "") }
-    var descricao by remember { mutableStateOf(receita?.descricao ?: "") }
-    var ingredientes by remember { mutableStateOf(receita?.ingredientes ?: "") }
-    var preparo by remember { mutableStateOf(receita?.preparo ?: "") }
 
+    var receita by remember { mutableStateOf<Receita?>(null) }
+
+    LaunchedEffect(receitaId) {
+        receita = if (receitaId != null) {
+            viewModel.getReceitaById(receitaId)
+        } else {
+            null
+        }
+    }
+
+
+    var titulo by remember { mutableStateOf("") }
+    var descricao by remember { mutableStateOf("") }
+    var ingredientes by remember { mutableStateOf("") }
+    var preparo by remember { mutableStateOf("") }
+
+    LaunchedEffect(receita) {
+        if (receita != null) {
+            titulo = receita!!.titulo
+            descricao = receita!!.descricao
+            ingredientes = receita!!.ingredientes.joinToString(", ")
+            preparo = receita!!.preparo
+        }
+    }
 
     Column(
         modifier = Modifier.padding(16.dp),
@@ -82,15 +103,16 @@ fun GravarReceitas(
                 titulo = titulo,
                 descricao = descricao,
                 ingredientes = ingredientesLista,
-                preparo = preparo
+                preparo = preparo,
+                favoritado = receita?.favoritado ?: false
             )
             viewModel.gravarReceita(novaReceita)
             navController.popBackStack()
         }) {
             Text(if (receitaId == null) "Criar Receita" else "Salvar Alterações")
         }
-
     }
 }
+
 
 

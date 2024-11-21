@@ -42,7 +42,7 @@ import br.edu.up.appdereceitas.ui.viewmodel.ReceitaViewModel
 
 
 @Composable
-fun ListaReceitas(navController: NavController, receitaViewModel: ReceitaViewModel) {
+fun ListaReceitas(navController: NavController, receitaViewModel: ReceitaViewModel, receitaId: Int?) {
     val receitas by receitaViewModel.receitas.collectAsState()
 
     Scaffold(
@@ -62,7 +62,7 @@ fun ListaReceitas(navController: NavController, receitaViewModel: ReceitaViewMod
                 containerColor = Color(0xFF75A902),
                 contentColor = Color.White,
                 onClick = {
-                    navController.navigate("_adicionarReceita")
+                    navController.navigate("_gravar_receitas/${receitaId?.toString() ?: "null"}")
                 }
             ) {
                 Icon(Icons.Default.Add, contentDescription = "Adicionar Receita")

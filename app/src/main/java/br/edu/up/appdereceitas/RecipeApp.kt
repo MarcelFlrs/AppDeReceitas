@@ -1,9 +1,11 @@
 package br.edu.up.appdereceitas
 
 import androidx.compose.runtime.Composable
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
 import br.edu.up.appdereceitas.ui.screen.CategoriaReceitas
 import br.edu.up.appdereceitas.ui.screen.ListaReceitas
 import br.edu.up.appdereceitas.ui.screen.GravarReceitas
@@ -28,8 +30,9 @@ fun RecipeApp(viewModelReceita: ReceitaViewModel) {
             }
 
 
-            composable("_receitas") {
-                ListaReceitas(navController, viewModelReceita)
+            composable("_receitas") {backStackEntry ->
+                val receitaId = backStackEntry.arguments?.getString("receitaId")?.toIntOrNull()
+                ListaReceitas(navController, viewModelReceita, receitaId)
             }
 
             composable("_detalhes/{receitaId}") { backStackEntry ->
@@ -43,15 +46,12 @@ fun RecipeApp(viewModelReceita: ReceitaViewModel) {
 
 
 
-            composable("_gravar_receitas/{receitaId?}") { backStackEntry ->
-                val receitaId = backStackEntry.arguments?.getString("receitaId")
-                GravarReceitas(
-                    navController = navController,
-                    viewModel = viewModelReceita,
-                    receitaId = receitaId?.toIntOrNull(),
-
-                )
+            composable("_gravar_receitas/{receitaId}") { backStackEntry ->
+                val receitaId = backStackEntry.arguments?.getString("receitaId")?.toIntOrNull()
+                GravarReceitas(navController, receitaId, viewModelReceita)
             }
+
+
 
             composable ("_receitasfavoritas"){
                 ReceitasFavoritas(navController, viewModelReceita)

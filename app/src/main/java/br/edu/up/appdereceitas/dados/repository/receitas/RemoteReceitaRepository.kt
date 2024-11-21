@@ -39,10 +39,9 @@ class RemoteReceitaRepository: ReceitaRepository {
 
     override suspend fun gravarReceita(receita: Receita) {
         val document: DocumentReference
-
         if (receita.id == 0) {
-            document = receitaCollection.document()
-            receita.id = document.id.hashCode()
+            receita.id = getId()
+            document = receitaCollection.document(receita.id.toString())
         } else {
             document = receitaCollection.document(receita.id.toString())
         }
@@ -50,12 +49,17 @@ class RemoteReceitaRepository: ReceitaRepository {
         document.set(receita).await()
     }
 
-    override suspend fun buscarReceitaPorId(id: Int): Receita? {
-        val document = receitaCollection.document(id.toString()).get().await()
-        return document.toObject(Receita::class.java)
+    override suspend fun buscarReceitaPorId(idx: Int): Receita {
+        val documentSnapshot = receitaCollection
+            .whereEqualTo("id", idx)
+            .get()
+            .await()
+            .documents
+            .firstOrNull()
+
+        return documentSnapshot?.toObject(Receita::class.java)
+            ?: throw NoSuchElementException("Receita com id $idx não encontrada no Firestore")
     }
-
-
 
     override suspend fun deleteReceita(receita: Receita) {
         receitaCollection.document(receita.id.toString()).delete().await()

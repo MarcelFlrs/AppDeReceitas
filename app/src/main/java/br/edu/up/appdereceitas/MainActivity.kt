@@ -32,7 +32,6 @@ class MainActivity : ComponentActivity() {
             receitaViewModel = ReceitaViewModel(remoteReceitaRepository)
         }
 
-
         setContent {
             RecipeApp(receitaViewModel)
         }

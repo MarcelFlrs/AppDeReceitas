@@ -22,15 +22,12 @@ class ReceitaViewModel (
         }
     }
 
-    fun getReceitaById(id: Int): StateFlow<Receita?> = flow {
-        val receita = repository.buscarReceitaPorId(id)
-        emit(receita)
-    }.stateIn(
-        scope = viewModelScope,
-        started = SharingStarted.WhileSubscribed(),
-        initialValue = null
-    )
+    private val _receita = MutableStateFlow<Receita?>(null)
+    val receita: StateFlow<Receita?> get() = _receita
 
+    suspend fun getReceitaById(id: Int): Receita {
+        return repository.buscarReceitaPorId(id)
+    }
 
     fun deleteReceita(receita: Receita) {
         viewModelScope.launch {
