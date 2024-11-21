@@ -35,7 +35,7 @@ fun GravarReceitas(
     var preparo by remember { mutableStateOf("") }
     var categoriaId by remember { mutableIntStateOf(0) }
     var expanded by remember { mutableStateOf(false) }
-    var selectedCategoria by remember { mutableStateOf("Selecione a categoria") }
+    var selectedCategoria by remember { mutableStateOf("") }
 
     LaunchedEffect(receita) {
         if (receita != null) {
@@ -62,8 +62,10 @@ fun GravarReceitas(
                 value = selectedCategoria,
                 onValueChange = {},
                 label = { Text("Categoria") },
-                modifier = Modifier.fillMaxWidth(),
-                readOnly = true
+                modifier = Modifier
+                    .menuAnchor()
+                    .fillMaxWidth(),
+                readOnly = true,
             )
 
             ExposedDropdownMenu(
@@ -106,7 +108,7 @@ fun GravarReceitas(
         TextField(
             value = ingredientes,
             onValueChange = { ingredientes = it },
-            label = { Text("Ingredientes da Receita") },
+            label = { Text("Ingredientes da Receita (Separados por vírgula)") },
             modifier = Modifier.fillMaxWidth()
         )
 

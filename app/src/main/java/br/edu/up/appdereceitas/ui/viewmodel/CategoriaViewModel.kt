@@ -24,6 +24,10 @@ class CategoriaViewModel (
         return repository.buscarCategoriaPorId(id)
     }
 
+    fun getNomeCategoriaById(categoriaId: Int): String {
+        return _categorias.value.find { it.id == categoriaId }?.nome ?: "Categoria não encontrada"
+    }
+
     fun deleteCategoria(categoria: Categoria) {
         viewModelScope.launch {
             repository.deleteCategoria(categoria)

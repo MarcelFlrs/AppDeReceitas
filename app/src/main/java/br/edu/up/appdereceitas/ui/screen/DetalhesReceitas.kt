@@ -36,10 +36,15 @@ import br.edu.up.appdereceitas.ui.viewmodel.ReceitaViewModel
 fun DetalhesReceita(
     navController: NavController,
     viewModel: ReceitaViewModel,
+    viewModelCategoria: CategoriaViewModel,
     receitaId: Int
 ) {
+
+
     val receita = viewModel.receitas.collectAsState(initial = emptyList())
         .value.find { it.id == receitaId }
+
+    val nomeCategoria = receita?.categoriaId?.let { viewModelCategoria.getNomeCategoriaById(it) }
 
     if (receita == null) {
         Text(
@@ -124,6 +129,15 @@ fun DetalhesReceita(
                     fontWeight = FontWeight.Bold,
                     modifier = Modifier.padding(bottom = 8.dp)
                 )
+
+                if (nomeCategoria != null) {
+                    Text(
+                        text = "Categoria: $nomeCategoria",
+                        style = MaterialTheme.typography.bodyMedium,
+                        fontWeight = FontWeight.Medium,
+                        modifier = Modifier.padding(bottom = 8.dp)
+                    )
+                }
 
                 Text(
                     text = "Descrição: ${receita.descricao}",

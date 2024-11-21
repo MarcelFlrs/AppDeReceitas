@@ -44,6 +44,7 @@ fun RecipeApp(
                 DetalhesReceita(
                     navController = navController,
                     viewModel = viewModelReceita,
+                    viewModelCategoria = viewModelCategoria,
                     receitaId = receitaId
                 )
             }
