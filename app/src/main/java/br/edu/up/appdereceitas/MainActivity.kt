@@ -20,7 +20,7 @@ class MainActivity : ComponentActivity() {
         if (FirebaseApp.getApps(this).isEmpty()) {
             FirebaseApp.initializeApp(this)
         }
-        val isLocal = true
+        val isLocal = false
 
         val db = abrirDataBase(this)
 

@@ -147,9 +147,14 @@ fun CategoriaReceitas(
                                     color = Color.Black,
                                     fontWeight = FontWeight.W500
                                 )
-                                IconButton(onClick = {
 
-                                    navController.navigate("editar_categoria/${categoria.id}")
+                                Row(
+                                    horizontalArrangement = Arrangement.End,
+                                    modifier = Modifier.fillMaxWidth()
+                                ) {
+                                    IconButton(onClick = {
+
+                                        navController.navigate("editar_categoria/${categoria.id}")
 
 //                                Toast.makeText(
 //                                    navController.context,
@@ -157,25 +162,25 @@ fun CategoriaReceitas(
 //                                    Toast.LENGTH_SHORT
 //                                ).show()
 
-                                }) {
-                                    Icon(
-                                        imageVector = Icons.Outlined.Create,
-                                        contentDescription = "Editar",
-                                        tint = Color.Black
-                                    )
+                                    }) {
+                                        Icon(
+                                            imageVector = Icons.Outlined.Create,
+                                            contentDescription = "Editar",
+                                            tint = Color.Black
+                                        )
 
+                                    }
+
+                                    IconButton(onClick = {
+                                        showDialog = true
+                                    }) {
+                                        Icon(
+                                            imageVector = Icons.Default.Delete,
+                                            contentDescription = "Excluir",
+                                            tint = Color.Red
+                                        )
+                                    }
                                 }
-
-                                IconButton(onClick = {
-                                    showDialog = true
-                                }) {
-                                    Icon(
-                                        imageVector = Icons.Default.Delete,
-                                        contentDescription = "Excluir",
-                                        tint = Color.Red
-                                    )
-                                }
-
                             }
                         }
                     }

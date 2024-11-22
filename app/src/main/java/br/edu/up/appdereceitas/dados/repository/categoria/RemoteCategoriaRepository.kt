@@ -1,6 +1,8 @@
 package br.edu.up.appdereceitas.dados.repository.categoria
 
 import br.edu.up.appdereceitas.dados.model.Categoria
+import br.edu.up.appdereceitas.dados.model.Receita
+import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -24,6 +26,10 @@ class RemoteCategoriaRepository : CategoriaRepository {
     }
 
     override suspend fun buscarCategoriaPorId(idx: Int?): Categoria? {
+        if (idx == null) {
+            return null
+        }
+
         val documentSnapshot = categoriaCollection.document(idx.toString()).get().await()
         return if (documentSnapshot.exists()) {
             documentSnapshot.toObject(Categoria::class.java)
@@ -32,11 +38,32 @@ class RemoteCategoriaRepository : CategoriaRepository {
         }
     }
 
+    private suspend fun getId(): Int{
+        val dados = categoriaCollection.get().await()
+        val maxId = dados.documents.mapNotNull {
+            it.getLong("id")?.toInt()
+        }.maxOrNull() ?: 0
+        return maxId + 1
+    }
+
     override suspend fun gravarCategoria(categoria: Categoria) {
-        categoriaCollection.document(categoria.id.toString()).set(categoria).await()
+        val document: DocumentReference
+        if (categoria.id == 0 || categoria.id == null) {
+            categoria.id = getId()
+            document = categoriaCollection.document(categoria.id.toString())
+
+        } else {
+            document = categoriaCollection.document(categoria.id.toString())
+        }
+
+        document.set(categoria).await()
     }
 
     override suspend fun deleteCategoria(categoria: Categoria) {
-        categoriaCollection.document(categoria.id.toString()).delete().await()
+        categoria.id?.let { id ->
+            categoriaCollection.document(id.toString()).delete().await()
+        } ?: run {
+            throw IllegalArgumentException("A categoria precisa de um ID válido para ser deletada")
+        }
     }
 }

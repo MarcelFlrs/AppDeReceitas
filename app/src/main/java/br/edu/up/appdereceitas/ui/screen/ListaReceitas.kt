@@ -5,8 +5,10 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -118,27 +120,33 @@ fun ListaReceitas(navController: NavController, receitaViewModel: ReceitaViewMod
                                     color = Color.Black,
                                     fontWeight = FontWeight.W500
                                 )
-                                IconButton(onClick = {
-                                    val idReceita = receita.id
-                                    if (idReceita != null) {
-                                        receitaViewModel.atualizarFavorito(idReceita, !receita.favoritado)
+
+                                Row(
+                                    horizontalArrangement = Arrangement.End,
+                                    modifier = Modifier.fillMaxWidth()
+                                ) {
+                                    IconButton(onClick = { val idReceita = receita.id
+                                        if (idReceita != null) {
+                                            receitaViewModel.atualizarFavorito(idReceita, !receita.favoritado)
+                                        }
+                                    }) {
+                                        Icon(
+                                            imageVector = if (receita.favoritado) Icons.Default.Favorite else Icons.Outlined.FavoriteBorder,
+                                            contentDescription = "Favoritar",
+                                            tint = if (receita.favoritado) Color(0xFF75A902) else Color.Black
+                                        )
                                     }
-                                }) {
-                                    Icon(
-                                        imageVector = if (receita.favoritado) Icons.Default.Favorite else Icons.Outlined.FavoriteBorder,
-                                        contentDescription = "Favoritar",
-                                        tint = if (receita.favoritado) Color(0xFF75A902) else Color.Black
-                                    )
-                                }
 
-                                IconButton(onClick = {  navController.navigate("_gravar_receitas/${receita.id}") }) {
-                                    Icon(
-                                        imageVector = Icons.Default.Edit,
-                                        tint = Color.Black,
-                                        contentDescription = "Editar Receita"
-                                    )
-                                }
+                                    Spacer(modifier = Modifier.width(16.dp))
 
+                                    IconButton(onClick = { navController.navigate("_gravar_receitas/${receita.id}") }) {
+                                        Icon(
+                                            imageVector = Icons.Default.Edit,
+                                            tint = Color.Black,
+                                            contentDescription = "Editar Receita"
+                                        )
+                                    }
+                                }
 
                             }
                         }

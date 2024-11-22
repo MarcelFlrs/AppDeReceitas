@@ -76,7 +76,7 @@ fun GravarCategoria(
         ) {
             TextField(
                 value = nome,
-                onValueChange = { nome = it },
+                onValueChange = { if (it.length <= 20) nome = it },
                 label = { Text("Nome da Categoria") },
                 modifier = Modifier.fillMaxWidth(),
                 isError = nomeCategoria.text.isBlank(),
@@ -87,6 +87,7 @@ fun GravarCategoria(
 
             ElevatedButton(
                 onClick = {
+
                     if (nome.isNotBlank()) {
                         val novaCategoria = Categoria(
                             id = categoriaId,
