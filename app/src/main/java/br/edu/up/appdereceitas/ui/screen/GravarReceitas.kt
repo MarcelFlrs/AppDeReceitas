@@ -114,7 +114,7 @@ fun GravarReceitas(
 
             TextField(
                 value = titulo,
-                onValueChange = { if (it.length <= 20) titulo = it },
+                onValueChange = { if (it.length <= 24) titulo = it },
                 label = { Text("Nome da Receita") },
                 colors = TextFieldDefaults.textFieldColors(
                     containerColor = Color(0xFFFFF3E0),

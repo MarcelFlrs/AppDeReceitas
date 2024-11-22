@@ -2,7 +2,6 @@ package br.edu.up.appdereceitas.dados.repository.categoria
 
 import br.edu.up.appdereceitas.dados.dao.CategoriaDao
 import br.edu.up.appdereceitas.dados.model.Categoria
-import br.edu.up.appdereceitas.dados.model.Receita
 import kotlinx.coroutines.flow.Flow
 
 class LocalCategoriaRepository(

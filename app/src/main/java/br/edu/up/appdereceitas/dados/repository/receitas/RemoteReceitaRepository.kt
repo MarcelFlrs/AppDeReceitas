@@ -44,7 +44,6 @@ class RemoteReceitaRepository: ReceitaRepository {
         if (receita.id == 0) {
             receita.id = getId()
             document = receitaCollection.document(receita.id.toString())
-
         } else {
             document = receitaCollection.document(receita.id.toString())
         }

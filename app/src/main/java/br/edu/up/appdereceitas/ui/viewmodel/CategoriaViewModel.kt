@@ -16,7 +16,6 @@ class CategoriaViewModel (
     fun gravarCategoria(categoria: Categoria) {
         viewModelScope.launch {
             repository.gravarCategoria(categoria)
-            _categorias.value += categoria
         }
     }
 

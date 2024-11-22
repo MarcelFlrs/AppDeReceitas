@@ -43,6 +43,4 @@ fun AppTopBar(
             navigationIconContentColor = Color.Black
         )
     )
-
-
 }

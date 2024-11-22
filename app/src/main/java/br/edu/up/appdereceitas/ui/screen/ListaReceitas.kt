@@ -39,7 +39,6 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import br.edu.up.appdereceitas.ui.screen.util.AppBottomBar
 import br.edu.up.appdereceitas.ui.screen.util.AppTopBar
-import br.edu.up.appdereceitas.ui.viewmodel.CategoriaViewModel
 import br.edu.up.appdereceitas.ui.viewmodel.ReceitaViewModel
 
 
@@ -53,7 +52,7 @@ fun ListaReceitas(navController: NavController, receitaViewModel: ReceitaViewMod
                 title = {
                     Text(
                         text = "TasteBook", style = MaterialTheme.typography.titleLarge.copy(
-                            fontWeight = FontWeight.Bold,
+                            fontWeight = FontWeight.Bold
                         ), modifier = Modifier.fillMaxWidth()
                     )
                 }, navController = navController

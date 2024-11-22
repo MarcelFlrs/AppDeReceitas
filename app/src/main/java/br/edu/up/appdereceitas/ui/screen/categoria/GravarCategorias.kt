@@ -76,7 +76,7 @@ fun GravarCategoria(
         ) {
             TextField(
                 value = nome,
-                onValueChange = { if (it.length <= 20) nome = it },
+                onValueChange = { if (it.length <= 24) nome = it },
                 label = { Text("Nome da Categoria") },
                 modifier = Modifier.fillMaxWidth(),
                 isError = nomeCategoria.text.isBlank(),

@@ -41,7 +41,6 @@ class MainActivity : ComponentActivity() {
             categoriaViewModel = CategoriaViewModel(remoteCategoriaRepository)
         }
 
-
         setContent {
             RecipeApp(receitaViewModel, categoriaViewModel)
         }

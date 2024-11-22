@@ -33,7 +33,6 @@ fun RecipeApp(
                 CategoriaReceitas(navController, viewModelCategoria)
             }
 
-
             composable("_receitas") {backStackEntry ->
                 val receitaId = backStackEntry.arguments?.getString("receitaId")?.toIntOrNull()
                 ListaReceitas(navController, viewModelReceita, receitaId)
